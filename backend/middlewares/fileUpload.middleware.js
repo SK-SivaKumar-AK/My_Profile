@@ -52,6 +52,9 @@ const uploadImage = uploads.fields([
     }
 ]);
 
+const noUploadImage = uploads.none();
+
+
 
 
 /* Call another files */
@@ -64,7 +67,8 @@ const uploadImage = uploads.fields([
 
 /* export functions */
 module.exports = {
-    uploadImage
+    uploadImage,
+    noUploadImage
 }
 
 

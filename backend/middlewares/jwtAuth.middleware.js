@@ -51,7 +51,7 @@ const jwtAuthenticate = async (req , res , next) => {
 
             }else{
                 
-                return res.status(404).json({
+                return res.status(200).json({
                     Result : false,
                     Message : 'No Token Available!'
                 });
@@ -59,7 +59,7 @@ const jwtAuthenticate = async (req , res , next) => {
             }
         }else{
             
-            return res.status(404).json({
+            return res.status(200).json({
                 Result : false,
                 Message : 'No Token Available!'
             });

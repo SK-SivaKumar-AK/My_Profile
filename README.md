@@ -3,7 +3,22 @@ This is my Portfolio
 
 
 ---------------------------------------------------------Backend details---------------------------------------------------------
-steps-1 => APIs:
+
+Packages Installed:
+#1 nodemon in development server    =>   npm install nodemon -D
+#2 Express  =>    npm install express
+#3 Mongoose =>   npm install mongoose
+#4 Env file  =>  npm install dotenv
+#5 JWT   =>  npm install jsonwebtoken
+#6 bcrypt  => npm install bcryptjs
+#7 cookieparser   =>  npm install cookie-parser
+#8 CORS policies  => npm install cors
+
+
+
+
+
+APIs:
 #1 Users SignUp/Login
 #2 Dashboard
 #3 About
@@ -14,18 +29,9 @@ steps-1 => APIs:
 
 
 
-steps-2 => Packages used:
-#1 nodemon in development server    =>   npm install nodemon -D
-#2 Express  =>    npm install express
-#3 Mongoose =>   npm install mongoose
-#4 Env file  =>  npm install dotenv
-#5 JWT   =>  npm install jsonwebtoken
-#6 bcrypt  => npm install bcryptjs
-#7 cookieparser   =>  npm install cookie-parser
 
 
-
-step-2.1 => main.js templates:
+main.js templates:
 /* call package */
 /* call package function */
 /* call inbuild middleware */
@@ -33,14 +39,14 @@ step-2.1 => main.js templates:
 /* Call another files functions*/
 /* app listen */
 
-Step-2.2 => another file templates:
+another file templates:
 /* call package */
 /* call package function */
 /* Call another files */
 /* Call another files functions and original functions */
 /* export functions */
 
-Step-2.3 => controller template
+controller template:
 try {
         
     return res.status(200).json({
@@ -59,35 +65,42 @@ try {
 }
 
 
-steps-3 => config
-#1 .env file create
-    - port,env,dburl
-#2 Database Connection
-    - /* call package */
-    - /* call package function */
-    - /* Call another files */
-    - /* Call another files functions and original functions */
-    - /* export functions */
-#3 main.js file work
-    - /* call package */
-    - /* call package function */
-    - /* call inbuild middleware */
-    - /* Call another files */
-    - /* Call another files functions*/
-    - /* app listen */
-
-
-Step-4 => Create Routes
-Step-5 => Create Controllers
-Step-6 => Create middleware (If possible)
-Step-7 => Create Models
 
 
 
 
 
+Steps:
+#1 Main file
+    - express json and urlencode and cookie-parser etc
+#2 Config
+    - .env
+    - database connection
+#3 Middlewares
+    -Middleware files
+#4 Routes
+    - Routes file
+#5 Controllers
+    - Controller files
+#6 Models
+    - Model files
 
 
+
+
+=====================================================================================================================================
+
+
+
+
+---------------------------------------------------------Frontend details---------------------------------------------------------
+
+
+Packages Installed:
+#1 npm install web-vitals
+#2 npm install bootstrap
+#3 npm install react-router-dom
+#4 npm install react-toastify
 
 
 

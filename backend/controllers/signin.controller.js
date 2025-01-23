@@ -53,10 +53,10 @@ const userLogin = async (req , res) => {
     try {
 
         const { userEmail , userPassword } = req.body;
-        
+       
         const checkUser = await userTable.findOne({ userEmail : userEmail});
         if(!checkUser){
-            return res.status(404).json({
+            return res.status(200).json({
                 Result : false,
                 Message : 'Invalid Email!'
             });
@@ -64,7 +64,7 @@ const userLogin = async (req , res) => {
 
         const checkPassword = await checkUser.comparePassword(userPassword);
         if(!checkPassword){
-            return res.status(404).json({
+            return res.status(200).json({
                 Result : false,
                 Message : 'Invalid Password!'
             });
@@ -81,7 +81,9 @@ const userLogin = async (req , res) => {
         );
         res.cookie('accessToken' , accessToken , {
             secure : false,
-            maxAge : 1 * 60 * 1000
+            maxAge : 1 * 60 * 1000,
+            httpOnly: true,
+            sameSite: 'None'
         });
 
         const refreshToken = await jwt.sign(
@@ -95,16 +97,21 @@ const userLogin = async (req , res) => {
         );
         res.cookie('refreshToken' , refreshToken , {
             secure : false,
-            maxAge : 5 * 60 * 1000
+            maxAge : 5 * 60 * 1000,
+            httpOnly: true,
+            sameSite: 'None'
         });
-
         
 
 
         return res.status(200).json({
             Result : true,
             Message : 'Login SuccessFully!',
-            data : checkUser
+            data : {
+                checkUser,
+                accessToken,
+                refreshToken
+            }
         });
 
     } catch (error) {
