@@ -21,7 +21,7 @@ const AdminLoginPage = () => {
             const response = await fetch(GETUSER_URL , {
                 method: 'GET',
                 credentials: 'include', // Ensure cookies are sent
-                });
+            });
             const responded = await response.json();
             
             if(responded.Result === true){
