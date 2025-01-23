@@ -80,7 +80,7 @@ const userLogin = async (req , res) => {
             }
         );
         res.cookie('accessToken' , accessToken , {
-            secure : false,
+            secure : true,
             maxAge : 1 * 60 * 1000,
             httpOnly: true,
             sameSite: 'None'
@@ -96,7 +96,7 @@ const userLogin = async (req , res) => {
             }
         );
         res.cookie('refreshToken' , refreshToken , {
-            secure : false,
+            secure : true,
             maxAge : 5 * 60 * 1000,
             httpOnly: true,
             sameSite: 'None'

@@ -43,8 +43,10 @@ const jwtAuthenticate = async (req , res , next) => {
                     }
                 );
                 res.cookie('accessToken' , accessToken , {
-                    secure : false,
-                    maxAge : 1 * 60 * 1000
+                    secure : true,
+                    maxAge : 1 * 60 * 1000,
+                    httpOnly: true,
+                    sameSite: 'None'
                 });
                 req.userId = decodeData.userId;
                 next();

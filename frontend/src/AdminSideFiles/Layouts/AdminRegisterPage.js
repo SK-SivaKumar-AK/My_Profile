@@ -1,4 +1,4 @@
-import React, { useState , useRef } from 'react'
+import React, { useState , useRef , useEffect } from 'react'
 import { Link , useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify";
 
@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const AdminRegisterPage = () => {
 
     const SIGNIN_URL = `${process.env.REACT_APP_BASE_URL}api/v1/signin`;
-    //const GETUSER_URL = `${process.env.REACT_APP_BASE_URL}api/v1/getuser`;
+    const GETUSER_URL = `${process.env.REACT_APP_BASE_URL}api/v1/getuser`;
     const [inputData , setInputData] = useState({
         userName : '',
         userEmail : '',
@@ -26,18 +26,20 @@ const AdminRegisterPage = () => {
         }
     }
 
-    // useEffect(() => {
-    //     const getUser = async () => {
-    //         const response = await fetch(GETUSER_URL , {method: 'GET' , credentials: 'include'});
-    //         const responded = await response.json();
-    //         console.log(responded);
-    //         if(responded.Result === true){
-    //             //navigate('/admin/dashboard');
-    //         }
-    //     }
-    //     getUser();
-    // } , [GETUSER_URL]);
-
+    useEffect(() => {
+        const getUser = async () => {
+            const response = await fetch(GETUSER_URL , {
+                method: 'GET',
+                credentials: 'include', // Ensure cookies are sent
+              });
+            const responded = await response.json();
+            
+            if(responded.Result === true){
+                navigate('/admin/dashboard');
+            }
+        }
+        getUser();
+    } , [GETUSER_URL]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

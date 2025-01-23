@@ -1,9 +1,10 @@
-import React , { useState } from 'react'
+import React , { useState , useEffect } from 'react'
 import { Link , useNavigate } from 'react-router-dom'
 
 const AdminLoginPage = () => {
 
     const LOGIN_URL = `${process.env.REACT_APP_BASE_URL}api/v1/login`;
+    const GETUSER_URL = `${process.env.REACT_APP_BASE_URL}api/v1/getuser`;
     const [inputData , setInputData] = useState({
         userEmail : '',
         userPassword : ''
@@ -15,6 +16,21 @@ const AdminLoginPage = () => {
         setInputData({ ...inputData , [name] : value });
     }
 
+    useEffect(() => {
+        const getUser = async () => {
+            const response = await fetch(GETUSER_URL , {
+                method: 'GET',
+                credentials: 'include', // Ensure cookies are sent
+                });
+            const responded = await response.json();
+            
+            if(responded.Result === true){
+                navigate('/admin/dashboard');
+            }
+        }
+        getUser();
+    } , [GETUSER_URL]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -25,7 +41,8 @@ const AdminLoginPage = () => {
 
         const response = await fetch( LOGIN_URL , {
             method : "POST",
-            body : formData
+            body : formData,
+            credentials: 'include',
         });
         const responded = await response.json();
         if(responded.Result === true){
