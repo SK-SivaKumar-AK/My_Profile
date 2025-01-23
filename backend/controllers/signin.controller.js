@@ -81,7 +81,7 @@ const userLogin = async (req , res) => {
         );
         res.cookie('accessToken' , accessToken , {
             secure : true,
-            maxAge : 1 * 60 * 1000,
+            maxAge : 60 * 60 * 1000,
             httpOnly: true,
             sameSite: 'None'
         });
@@ -97,7 +97,7 @@ const userLogin = async (req , res) => {
         );
         res.cookie('refreshToken' , refreshToken , {
             secure : true,
-            maxAge : 5 * 60 * 1000,
+            maxAge : 120 * 60 * 1000,
             httpOnly: true,
             sameSite: 'None'
         });
@@ -107,11 +107,7 @@ const userLogin = async (req , res) => {
         return res.status(200).json({
             Result : true,
             Message : 'Login SuccessFully!',
-            data : {
-                checkUser,
-                accessToken,
-                refreshToken
-            }
+            data : checkUser
         });
 
     } catch (error) {
@@ -204,8 +200,16 @@ const userimageupdate = async (req , res) => {
 const userLogout = (req , res) => {
     try {
 
-        res.clearCookie('accessToken');  // Clear accessToken cookie
-        res.clearCookie('refreshToken'); // Clear refreshToken cookie
+        res.clearCookie('accessToken', { 
+            secure: true, 
+            httpOnly: true, 
+            sameSite: 'None' 
+        });
+        res.clearCookie('refreshToken', { 
+            secure: true, 
+            httpOnly: true, 
+            sameSite: 'None' 
+        });
         return res.status(200).json({
             Result : true,
             Message : 'Logout SuccessFully!',

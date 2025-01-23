@@ -101,6 +101,6 @@ Packages Installed:
 #2 npm install bootstrap
 #3 npm install react-router-dom
 #4 npm install react-toastify
-
+#5 npm install bootstrap-icons
 
 

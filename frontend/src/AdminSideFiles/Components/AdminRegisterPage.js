@@ -1,21 +1,13 @@
-import React, { useState , useRef , useEffect } from 'react'
+import React , { useState , useRef } from 'react'
 import { Link , useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify";
-
 
 const AdminRegisterPage = () => {
 
     const SIGNIN_URL = `${process.env.REACT_APP_BASE_URL}api/v1/signin`;
-    const GETUSER_URL = `${process.env.REACT_APP_BASE_URL}api/v1/getuser`;
-    const [inputData , setInputData] = useState({
-        userName : '',
-        userEmail : '',
-        userPassword : '',
-        image : null
-    });
+    const [inputData , setInputData] = useState({});
     const fileInputRef = useRef(null);
     const navigate = useNavigate();
-
 
     const handleChange = (e) => {
         const { name , value , type , files } = e.target;
@@ -25,21 +17,6 @@ const AdminRegisterPage = () => {
             setInputData({ ...inputData , [name] : value });
         }
     }
-
-    useEffect(() => {
-        const getUser = async () => {
-            const response = await fetch(GETUSER_URL , {
-                method: 'GET',
-                credentials: 'include', // Ensure cookies are sent
-              });
-            const responded = await response.json();
-            
-            if(responded.Result === true){
-                navigate('/admin/dashboard');
-            }
-        }
-        getUser();
-    } , [GETUSER_URL , navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,7 +43,7 @@ const AdminRegisterPage = () => {
             toast.success( responded.Message, {
                 position : 'top-center',
                 onClose: () => {
-                    navigate('/admin');
+                    navigate('/admin/login');
                 }
             });
         }else {
@@ -76,11 +53,10 @@ const AdminRegisterPage = () => {
         }
     }
 
-
   return (
     <>
         <section className='container-fluid'>
-
+        
             <div className="row vh-100 d-flex justify-content-center align-items-center ">
 
                 <div className="col-4 rounded text-bg-secondary p-3">
