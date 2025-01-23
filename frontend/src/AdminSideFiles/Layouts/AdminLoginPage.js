@@ -29,7 +29,7 @@ const AdminLoginPage = () => {
             }
         }
         getUser();
-    } , [GETUSER_URL]);
+    } , [GETUSER_URL , navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
