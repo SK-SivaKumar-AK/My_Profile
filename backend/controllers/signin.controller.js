@@ -153,34 +153,12 @@ const userInfoUpdate = async (req , res) => {
             userEmail : userEmail,
             userPassword : userPassword
         };
+        if(req.files && req.files.image && req.files.image.length > 0){
+            updateUser.userProfileImage = req.files.image[0].filename;
+        }
+
         const updatedUser = await userTable.findOneAndUpdate( {_id : Id} , updateUser , {new:true});
 
-        return res.status(200).json({
-            Result : true,
-            Message : 'Updated Successfully!',
-            data : updatedUser
-        });
-
-    } catch (error) {
-
-        return res.status(404).json({
-            Result : false,
-            Message : error.message
-        });
-
-    }
-}
-
-const userimageupdate = async (req , res) => {
-    try {
-
-        const Id = req.params.id;
-        const { image } = req.files;
-
-        const updateUser = {
-            userProfileImage : image[0].filename
-        };
-        const updatedUser = await userTable.findOneAndUpdate( {_id : Id} , updateUser , {new:true});
         return res.status(200).json({
             Result : true,
             Message : 'Updated Successfully!',
@@ -234,7 +212,6 @@ module.exports = {
     userLogin,
     userData,
     userInfoUpdate,
-    userimageupdate,
     userLogout
 }
 

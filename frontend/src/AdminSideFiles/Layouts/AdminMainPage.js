@@ -1,13 +1,25 @@
-import React , { useState , useEffect } from 'react'
+import React , { useState , useEffect , useRef } from 'react'
 import { useNavigate , Outlet , Link } from 'react-router-dom'
+import { toast } from "react-toastify";
 
 const AdminMainPage = () => {
 
-    const GETUSER_URL = `${process.env.REACT_APP_BASE_URL}api/v1/getuser`;
-    const LOGOUT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/logout`;
-    const [userData , setUserData] = useState({});
     const [loading, setLoading] = useState(true);
+    const [render , setRender] = useState(false);
     const navigate = useNavigate();
+    
+
+    const GETUSER_URL = `${process.env.REACT_APP_BASE_URL}api/v1/getuser`;
+    const [userData , setUserData] = useState({});
+
+    const UPDATEUSER_URL = `${process.env.REACT_APP_BASE_URL}api/v1/userinfoupdate`;
+    const [inputUpdateData , setInputUpdateData] = useState({_id : '' , userName : '' , userEmail : ''});
+    const fileUpdateRef = useRef(null);
+    
+
+    const LOGOUT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/logout`;
+
+    
 
     useEffect(() => {
         const getUser = async () => {
@@ -17,7 +29,7 @@ const AdminMainPage = () => {
             });
             const responded = await response.json();
             if(responded.Result === true){
-                setUserData(responded.data[0]);
+                setUserData(responded.data);
                 setLoading(false);
             }else{
                 navigate('/admin/login');
@@ -25,7 +37,53 @@ const AdminMainPage = () => {
         }
         getUser();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    } , []);
+    } , [render]);
+
+
+
+    const handleModalData = (index) => {
+        setInputUpdateData({_id : userData[index]._id , userName : userData[index].userName , userEmail : userData[index].userEmail});
+    }
+    const handleReset = ()=>{
+        setRender(!render);
+        setInputUpdateData({_id : '' , userName : '' , userEmail : ''});
+        fileUpdateRef.current.value = '';
+    }
+
+    const handleUpdateChange = (e) => {
+        e.preventDefault();
+        const { name , value , type , files } = e.target;
+        if(type === 'file'){
+            setInputUpdateData({ ...inputUpdateData , [name] : files[0] });
+        }else{
+            setInputUpdateData({ ...inputUpdateData , [name] : value });
+        }
+    }
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+
+        const updateFormData = new FormData();
+        for(let key in inputUpdateData){
+            updateFormData.append(key , inputUpdateData[key]);
+        }
+        const response = await fetch( `${UPDATEUSER_URL}/${inputUpdateData._id}` , {
+            method: 'POST',
+            body: updateFormData,
+            credentials: 'include',
+        });
+        const responded = await response.json();
+        if(responded.Result === true){
+            setRender(!render);
+            toast.success( responded.Message, {
+                position : 'top-center',
+            });
+        }else{
+            toast.error('Something went wrong! Please try again.', {
+                position: 'top-center'
+            });
+        }
+    }
+
 
     const handleLogout = async () => {
         const response = await fetch(LOGOUT_URL , {
@@ -70,17 +128,18 @@ const AdminMainPage = () => {
                         </ul>
                     </div>
                     <div className="col-9 d-md-flex d-none align-items-center">
-                        <h5>{userData.userName}</h5>
+                        <h5>{userData[0].userName}</h5>
                     </div>
                     <div className="col-auto ms-auto dropdown">
-                        <img src={`${process.env.REACT_APP_BASE_URL}assets/uploads/${userData.userProfileImage}`} alt={userData.userProfileImage} className="dropdown-toggle rounded-circle" data-bs-toggle="dropdown" width={'50px'} height={'50px'}/>
+                        <img src={`${process.env.REACT_APP_BASE_URL}assets/uploads/${userData[0].userProfileImage}`} alt={userData[0].userProfileImage} className="dropdown-toggle rounded-circle" data-bs-toggle="dropdown" width={'50px'} height={'50px'}/>
                         <ul className="dropdown-menu">
-                            <li><button className="dropdown-item" onClick={(e) => {handleLogout()}}>LogOut</button></li>
+                            <li><button className="dropdown-item" onClick={(e) => {handleLogout(e)}}>LogOut</button></li>
+                            <li><button className="dropdown-item" data-bs-toggle="modal" data-bs-target="#userUpdateModal" onClick={() => handleModalData(0)}>Update Profile</button></li>
                         </ul>
                     </div>
-    
-                </header>
-    
+                        
+                </header>              
+                
                 <main className="row">
     
                     <div className="col-3 d-md-flex d-none bg-dark-subtle vh-100 position-fixed">
@@ -99,14 +158,48 @@ const AdminMainPage = () => {
     
                 </main>
     
-                <footer className="row text-bg-secondary pt-2 fixed-bottom">
+                <footer className="row text-bg-secondary pt-1 fixed-bottom">
                     <div className="col d-flex align-items-center">
                         <h5>Portfolio Admin</h5>
                     </div>
                 </footer>
-    
+
+
+                <div className="modal fade" id="userUpdateModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h1 className="modal-title fs-5 text-dark" id="exampleModalLabel">{userData[0].userName}</h1>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => {handleReset()}}></button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="mb-3">
+                                    <label htmlFor="updateUserName" className="form-label text-dark">UserName</label>
+                                    <input type="text" className="form-control" id="updateUserName" name="userName" placeholder="Please Enter User Name" value={inputUpdateData.userName} autoComplete="off" onChange={ (e) => handleUpdateChange(e)}/>
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="updateUserEmail" className="form-label text-dark">UserEmail</label>
+                                    <input type="text" className="form-control" id="updateUserEmail" name="userEmail" placeholder="Please Enter User Email" value={inputUpdateData.userEmail} onChange={ (e) => handleUpdateChange(e)}/>
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="updateUserPassword" className="form-label text-dark">UserPassword</label>
+                                    <input type="password" className="form-control" id="updateUserPassword" name="userPassword" placeholder="*****" onChange={ (e) => handleUpdateChange(e)}/>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label text-dark" htmlFor="updateImage">User Profile Picture</label>
+                                    <input type="file" className="form-control" id="updateImage" name="image" ref={fileUpdateRef} onChange={ (e) => handleUpdateChange(e)} />
+                                </div>
+                                
+                                <hr />
+                                
+                                <button type="button" className="btn btn-primary" onClick={ (e) => handleUpdate(e)}>Update Info</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
         }
+        
     </>
   )
 }

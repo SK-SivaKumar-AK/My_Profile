@@ -13,6 +13,10 @@ const dashboardStructure = new mongoose.Schema({
         type : String,
         required : true
     },
+    contentEnable : {
+        type : Boolean,
+        required : true
+    },
     userImage : {
         type : String,
         required : true

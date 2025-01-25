@@ -38,7 +38,14 @@ userStructure.pre('save' , async function(next){
 });
 userStructure.pre('findOneAndUpdate' , async function(next){
     const update = this.getUpdate();
-    update.userPassword = await bcrypt.hash(update.userPassword , 10);
+    if (update.userPassword) {
+        // If userPassword is provided, hash it before saving
+        update.userPassword = await bcrypt.hash(update.userPassword, 10);
+    } else {
+        // If userPassword is not provided, don't change the current password
+        const existingUser = await this.model.findOne(this.getQuery());
+        update.userPassword = existingUser.userPassword;
+    }
     next();
 });
 

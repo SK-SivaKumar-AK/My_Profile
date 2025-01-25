@@ -4,10 +4,12 @@ import { toast } from "react-toastify";
 
 const AdminRegisterPage = () => {
 
-    const SIGNIN_URL = `${process.env.REACT_APP_BASE_URL}api/v1/signin`;
-    const [inputData , setInputData] = useState({});
-    const fileInputRef = useRef(null);
     const navigate = useNavigate();
+
+    const SIGNIN_URL = `${process.env.REACT_APP_BASE_URL}api/v1/signin`;
+    const [inputData , setInputData] = useState({userName : '' , userEmail : '' , userPassword : ''});
+    const fileInputRef = useRef(null);
+    
 
     const handleChange = (e) => {
         const { name , value , type , files } = e.target;
@@ -17,7 +19,6 @@ const AdminRegisterPage = () => {
             setInputData({ ...inputData , [name] : value });
         }
     }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -33,12 +34,7 @@ const AdminRegisterPage = () => {
         const responded = await response.json();
         
         if(responded.Result === true){
-            setInputData({
-                userName: '',
-                userEmail: '',
-                userPassword: '',
-                image: null,
-            });
+            setInputData({ userName: '', userEmail: '', userPassword: '', image: null });
             fileInputRef.current.value = '';
             toast.success( responded.Message, {
                 position : 'top-center',
