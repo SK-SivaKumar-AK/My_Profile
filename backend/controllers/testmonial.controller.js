@@ -16,12 +16,13 @@ const addInfo = async (req , res) => {
     try {
         
         const userId = req.userId;
-        const { subject , personName , personRole } = req.body;
+        const { subject , personName , personRole , testmonialEnable } = req.body;
 
         const addInfo = new testmonialTable({
             subject : subject,
             personName : personName,
             personRole : personRole,
+            testmonialEnable : testmonialEnable,
             userId : userId
         });
         
@@ -70,12 +71,13 @@ const updateInfo = async (req , res) => {
     try {
         
         const Id = req.params.id;
-        const { subject , personName , personRole } = req.body;
+        const { subject , personName , personRole , testmonialEnable } = req.body;
 
         const updateInfo = {
             subject : subject,
             personName : personName,
             personRole : personRole,
+            testmonialEnable : testmonialEnable
         };
 
         const updatedInfo = await testmonialTable.findOneAndUpdate({_id : Id} , updateInfo , {new:true});

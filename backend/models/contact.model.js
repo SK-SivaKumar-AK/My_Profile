@@ -33,6 +33,10 @@ const contactStructure = new mongoose.Schema({
         type : Number,
         required : true
     },
+    profileEnable : {
+        type : Boolean,
+        required : true
+    },
     userId : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'users',

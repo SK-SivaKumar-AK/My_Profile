@@ -16,7 +16,7 @@ const addInfo = async (req , res) => {
     try {
         
         const userId = req.userId;
-        const { streetName , areaName , cityName , stateName , countryName , pincode , phoneNumber } = req.body;
+        const { streetName , areaName , cityName , stateName , countryName , pincode , phoneNumber , profileEnable } = req.body;
 
         const addInfo = new contactTable({
             streetName : streetName,
@@ -26,6 +26,7 @@ const addInfo = async (req , res) => {
             countryName : countryName,
             pincode : pincode,
             phoneNumber : phoneNumber,
+            profileEnable : profileEnable,
             userId : userId
         });
         
@@ -74,7 +75,7 @@ const updateInfo = async (req , res) => {
     try {
         
         const Id = req.params.id;
-        const { streetName , areaName , cityName , stateName , countryName , pincode , phoneNumber } = req.body;
+        const { streetName , areaName , cityName , stateName , countryName , pincode , phoneNumber , profileEnable } = req.body;
 
         const updateInfo = {
             streetName : streetName,
@@ -84,6 +85,7 @@ const updateInfo = async (req , res) => {
             countryName : countryName,
             pincode : pincode,
             phoneNumber : phoneNumber,
+            profileEnable : profileEnable
         };
 
         const updatedInfo = await contactTable.findOneAndUpdate({_id : Id} , updateInfo , {new:true});

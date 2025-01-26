@@ -17,6 +17,10 @@ const testmonialStructure = new mongoose.Schema({
         type : String,
         required : true
     },
+    testmonialEnable : {
+        type : Boolean,
+        required : true
+    },
     userId : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'users',
