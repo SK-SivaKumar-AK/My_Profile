@@ -16,7 +16,7 @@ const addInfo = async (req , res) => {
     try {
         
         const userId = req.userId;
-        const { roleName , roleDescription , year , companyName , companyLocation} = req.body;
+        const { roleName , roleDescription , year , companyName , companyLocation , experienceEnable } = req.body;
 
         const addInfo = new experienceTable({
             roleName : roleName,
@@ -24,6 +24,7 @@ const addInfo = async (req , res) => {
             year : year,
             companyName : companyName,
             companyLocation : companyLocation,
+            experienceEnable : experienceEnable,
             userId : userId
         });
         
@@ -72,7 +73,7 @@ const updateInfo = async (req , res) => {
     try {
         
         const Id = req.params.id;
-        const { roleName , roleDescription , year , companyName , companyLocation} = req.body;
+        const { roleName , roleDescription , year , companyName , companyLocation , experienceEnable } = req.body;
 
         const updateInfo = {
             roleName : roleName,
@@ -80,6 +81,7 @@ const updateInfo = async (req , res) => {
             year : year,
             companyName : companyName,
             companyLocation : companyLocation,
+            experienceEnable : experienceEnable
         };
 
         const updatedInfo = await experienceTable.findOneAndUpdate({_id : Id} , updateInfo , {new:true});

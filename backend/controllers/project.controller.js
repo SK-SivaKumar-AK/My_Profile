@@ -16,12 +16,13 @@ const addInfo = async (req , res) => {
     try {
         
         const userId = req.userId;
-        const { projectName , projectDescription } = req.body;
+        const { projectName , projectDescription , projectEnable } = req.body;
         const { image } = req.files;
 
         const addInfo = new projectTable({
             projectName : projectName,
             projectDescription : projectDescription,
+            projectEnable : projectEnable,
             projectImage : image[0].filename,
             userId : userId
         });
@@ -70,41 +71,18 @@ const updateInfo = async (req , res) => {
     try {
         
         const Id = req.params.id;
-        const { projectName , projectDescription } = req.body;
+        const { projectName , projectDescription , projectEnable } = req.body;
 
         const updateInfo = {
             projectName : projectName,
-            projectDescription : projectDescription
+            projectDescription : projectDescription,
+            projectEnable : projectEnable
         };
+        if(req.files && req.files.image && req.files.image.length > 0){
+            updateInfo.projectImage = req.files.image[0].filename;
+        }
 
         const updatedInfo = await projectTable.findOneAndUpdate({_id : Id} , updateInfo , {new:true});
-
-        return res.status(200).json({
-            Result : true,
-            Message : 'Updated SuccessFully!',
-            data : updatedInfo
-        });
-    
-    } catch (error) {
-        
-        return res.status(404).json({
-            Result : false,
-            Message : error.message
-        });
-    
-    }
-};
-
-const updateImage = async (req , res) => {
-    try {
-        
-        const Id = req.params.id;
-        const { image } = req.files;
-
-        const updateInfo = {
-            projectImage : image[0].filename
-        };
-        const updatedInfo = await projectTable.findOneAndUpdate( {_id : Id} , updateInfo , {new:true});
 
         return res.status(200).json({
             Result : true,
@@ -127,7 +105,7 @@ const deleteInfo = async (req , res) => {
         
         const Id = req.params.id;
 
-        const deletedInfo = await dashboardTable.findOneAndDelete({_id : Id});
+        const deletedInfo = await projectTable.findOneAndDelete({_id : Id});
         
         return res.status(200).json({
             Result : true,
@@ -152,6 +130,5 @@ module.exports = {
     addInfo,
     readInfo,
     updateInfo,
-    updateImage,
     deleteInfo
 }

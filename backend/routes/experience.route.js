@@ -11,13 +11,14 @@ const experienceRouter = express.Router();
 /* Call another files */
 const { addInfo , readInfo , updateInfo , deleteInfo } = require('../controllers/experience.controller');
 const { jwtAuthenticate } = require('../middlewares/jwtAuth.middleware');
+const { noUploadImage } = require('../middlewares/fileUpload.middleware');
 
 
 
 /* Call another files functions and original functions */
-experienceRouter.route('/addexperienceinfo').post(jwtAuthenticate , addInfo);
+experienceRouter.route('/addexperienceinfo').post(jwtAuthenticate , noUploadImage , addInfo);
 experienceRouter.route('/readexperienceinfo').get(jwtAuthenticate , readInfo);
-experienceRouter.route('/updateexperienceinfo/:id').post(jwtAuthenticate , updateInfo);
+experienceRouter.route('/updateexperienceinfo/:id').post(jwtAuthenticate , noUploadImage , updateInfo);
 experienceRouter.route('/deleteexperienceinfo/:id').delete(jwtAuthenticate , deleteInfo);
 
 

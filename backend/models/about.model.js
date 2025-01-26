@@ -9,6 +9,10 @@ const aboutStructure = new mongoose.Schema({
         type : String,
         required : true
     },
+    skillEnable : {
+        type : Boolean,
+        required : true
+    },
     skillImage : {
         type : String,
         required : true

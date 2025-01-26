@@ -16,11 +16,12 @@ const addInfo = async (req , res) => {
     try {
         
         const userId = req.userId;
-        const { skillName } = req.body;
+        const { skillName , skillEnable } = req.body;
         const { image } = req.files;
 
         const addInfo = new aboutTable({
             skillName : skillName,
+            skillEnable : skillEnable,
             skillImage : image[0].filename,
             userId : userId
         });
@@ -70,45 +71,21 @@ const updateInfo = async (req , res) => {
     try {
         
         const Id = req.params.id;
-        const { skillName } = req.body;
+        const { skillName , skillEnable } = req.body;
 
         const updateInfo = {
-            skillName : skillName
+            skillName : skillName,
+            skillEnable : skillEnable
         };
+        if(req.files && req.files.image && req.files.image.length > 0){
+            updateInfo.skillImage = req.files.image[0].filename;
+        }
 
         const updatedInfo = await aboutTable.findOneAndUpdate({_id : Id} , updateInfo , {new:true});
 
         return res.status(200).json({
             Result : true,
             Message : 'Updated SuccessFully!',
-            data : updatedInfo
-        });
-    
-    } catch (error) {
-        
-        return res.status(404).json({
-            Result : false,
-            Message : error.message
-        });
-    
-    }
-};
-
-const updateImage = async (req , res) => {
-    try {
-        
-        const Id = req.params.id;
-        const { image } = req.files;
-
-        const updateInfo = {
-            skillImage : image[0].filename
-        };
-
-        const updatedInfo = await aboutTable.findOneAndUpdate( {_id : Id} , updateInfo , {new:true});
-
-        return res.status(200).json({
-            Result : true,
-            Message : 'Added SuccessFully!',
             data : updatedInfo
         });
     
@@ -152,7 +129,6 @@ module.exports = {
     addInfo,
     readInfo,
     updateInfo,
-    updateImage,
     deleteInfo
 }
 

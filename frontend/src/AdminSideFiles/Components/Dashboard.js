@@ -190,9 +190,9 @@ const Dashboard = () => {
       <div className="row mt-5">
         <div className="col-12">
           <h4>History</h4>
-          <table className="table table-bordered">
+          <table className="table table-bordered mb-5">
             <thead>
-              <tr>
+              <tr className='text-center'>
                 <th>S.No</th>
                 <th>Main Content</th>
                 <th>Sub Content</th>

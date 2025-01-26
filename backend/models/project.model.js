@@ -13,6 +13,10 @@ const projectStructure = new mongoose.Schema({
         type : String,
         required : true
     },
+    projectEnable : {
+        type : Boolean,
+        required : true
+    },
     projectImage : {
         type : String,
         required : true
