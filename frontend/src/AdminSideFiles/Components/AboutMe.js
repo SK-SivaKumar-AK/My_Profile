@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 const AboutMe = () => {
 
   const [render , setRender] = useState(false);
+  const modalRef = useRef(null);
 
   const READABOUT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readaboutinfo`;
   const [aboutData , setAboutData] = useState([]);
@@ -76,10 +77,11 @@ const AboutMe = () => {
 
 
   const handleModalData = (index) => {
+    modalRef.current.blur();
     setinputUpdateData({_id : aboutData[index]._id , skillName : aboutData[index].skillName , skillEnable : aboutData[index].skillEnable });
   }
   const handleReset = ()=>{
-    setRender(!render);
+    modalRef.current.blur();
     setinputUpdateData({_id : '' , skillName : '' , skillEnable : false});
     fileUpdateRef.current.value = '';
   }
@@ -210,7 +212,7 @@ const AboutMe = () => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h1 className="modal-title fs-5" id="exampleModalLabel">{inputUpdateData._id}</h1>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => {handleReset()}}></button>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={modalRef} onClick={() => {handleReset()}}></button>
                 </div>
                 <div className="modal-body">
                   <div className="mt-3">
@@ -228,7 +230,7 @@ const AboutMe = () => {
                 </div>
                 <div className="modal-footer">
                   <div className="mt-3">
-                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update Dashboard Info</button>
+                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update AboutMe Info</button>
                   </div>
                 </div>
               </div>

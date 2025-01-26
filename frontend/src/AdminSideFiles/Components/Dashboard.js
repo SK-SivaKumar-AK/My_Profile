@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const Dashboard = () => {
 
   const [render , setRender] = useState(false);
-  
+  const modalRef = useRef(null);
   
 
   const READDASHBOARD_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readdashboardinfo`;
@@ -89,10 +89,11 @@ const Dashboard = () => {
 
   
   const handleModalData = (index) => {
+    modalRef.current.blur();
     setinputUpdateData({_id : dashboardData[index]._id , mainContent : dashboardData[index].mainContent , subContent : dashboardData[index].subContent , contentEnable : dashboardData[index].contentEnable});
   }
   const handleReset = ()=>{
-    setRender(!render);
+    modalRef.current.blur();
     setinputUpdateData({_id : '' , mainContent : '' , subContent : '' , contentEnable : false});
     fileUpdateRef.current.value = '';
   }
@@ -233,7 +234,7 @@ const Dashboard = () => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h1 className="modal-title fs-5" id="exampleModalLabel">{inputUpdateData._id}</h1>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => {handleReset()}}></button>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={modalRef} onClick={() => {handleReset()}}></button>
                 </div>
                 <div className="modal-body">
                   <div className="mt-3">

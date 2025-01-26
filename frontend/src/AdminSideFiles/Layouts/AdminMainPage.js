@@ -7,6 +7,7 @@ const AdminMainPage = () => {
     const [loading, setLoading] = useState(true);
     const [render , setRender] = useState(false);
     const navigate = useNavigate();
+    const modalRef = useRef(null);
     
 
     const GETUSER_URL = `${process.env.REACT_APP_BASE_URL}api/v1/getuser`;
@@ -42,10 +43,11 @@ const AdminMainPage = () => {
 
 
     const handleModalData = (index) => {
+        modalRef.current.blur();
         setInputUpdateData({_id : userData[index]._id , userName : userData[index].userName , userEmail : userData[index].userEmail});
     }
     const handleReset = ()=>{
-        setRender(!render);
+        modalRef.current.blur();
         setInputUpdateData({_id : '' , userName : '' , userEmail : ''});
         fileUpdateRef.current.value = '';
     }
@@ -170,7 +172,7 @@ const AdminMainPage = () => {
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h1 className="modal-title fs-5 text-dark" id="exampleModalLabel">{userData[0].userName}</h1>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => {handleReset()}}></button>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={modalRef} onClick={() => {handleReset()}}></button>
                             </div>
                             <div className="modal-body">
                                 <div className="mb-3">

@@ -1,9 +1,10 @@
-import React , { useState , useEffect } from 'react'
+import React , { useState , useEffect , useRef } from 'react'
 import { toast } from 'react-toastify';
 
 const Experience = () => {
 
   const [render , setRender] = useState(false);
+  const modalRef = useRef(null);
 
   const READEXPERIENCE_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readexperienceinfo`;
   const [experienceData , setExperienceData] = useState([]);
@@ -72,9 +73,11 @@ const Experience = () => {
 
 
   const handleModalData = (index) => {
+    modalRef.current.blur();
     setInputUpdateData({_id : experienceData[index]._id , roleName : experienceData[index].roleName , roleDescription : experienceData[index].roleDescription , year : experienceData[index].year , companyName : experienceData[index].companyName , companyLocation : experienceData[index].companyLocation , experienceEnable : experienceData[index].experienceEnable});
   }
   const handleReset = (e) => {
+    modalRef.current.blur();
     setInputUpdateData({_id : '' , roleName : '' , roleDescription : '' , year : '' , companyName : '' , companyLocation : '' , experienceEnable : ''});
   }
   const handleUpdateChange = (e) => {
@@ -231,7 +234,7 @@ const Experience = () => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h1 className="modal-title fs-5" id="exampleModalLabel">{inputUpdateData._id}</h1>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => {handleReset()}}></button>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={modalRef} onClick={() => {handleReset()}}></button>
                 </div>
                 <div className="modal-body">
                   <div className="mt-3">

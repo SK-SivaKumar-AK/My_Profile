@@ -1,9 +1,10 @@
-import React , { useState , useEffect } from 'react'
+import React , { useState , useEffect , useRef } from 'react'
 import { toast } from 'react-toastify';
 
 const ContactMe = () => {
 
   const [render , setRender] = useState(false);
+  const modalRef = useRef(null);
 
   const READCONTACT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readcontactinfo`;
   const [contactData , setContactData] = useState([]);
@@ -69,9 +70,11 @@ const ContactMe = () => {
   }
 
   const handleModalData = (index) => {
+    modalRef.current.blur();
     setInputUpdateData({_id : contactData[index]._id , streetName : contactData[index].streetName , areaName : contactData[index].areaName , cityName : contactData[index].cityName , stateName : contactData[index].stateName , countryName : contactData[index].countryName , pincode : contactData[index].pincode , phoneNumber : contactData[index].phoneNumber , profileEnable : contactData[index].profileEnable });
   }
   const handleReset = (e) => {
+    modalRef.current.blur();
     setInputUpdateData({_id : '' , streetName : '' , areaName : '' , cityName : '' , stateName : '' , countryName : '' , pincode : '' , phoneNumber : '' , profileEnable : false});
   }
   const handleUpdateChange = (e) => {
@@ -171,7 +174,7 @@ const ContactMe = () => {
             <label className="form-check-label" htmlFor="profileEnable">Enable the Profile In Portfolio</label>
           </div>
           <div className="mt-3">
-            <button type="button" className="btn btn-primary" onClick={ (e) => handleAdd(e)}>Save Experience Info</button>
+            <button type="button" className="btn btn-primary" onClick={ (e) => handleAdd(e)}>Save Contact Info</button>
           </div>
         </div>
       </div>
@@ -229,7 +232,7 @@ const ContactMe = () => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h1 className="modal-title fs-5" id="exampleModalLabel">{inputUpdateData._id}</h1>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => {handleReset()}}></button>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={modalRef} onClick={() => {handleReset()}}></button>
                 </div>
                 <div className="modal-body">
                   <div className="mt-3">
@@ -267,7 +270,7 @@ const ContactMe = () => {
                 </div>
                 <div className="modal-footer">
                   <div className="mt-3">
-                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update Experience Info</button>
+                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update Contact Info</button>
                   </div>
                 </div>
               </div>

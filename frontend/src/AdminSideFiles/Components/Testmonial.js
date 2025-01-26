@@ -1,9 +1,10 @@
-import React , { useState , useEffect } from 'react'
+import React , { useState , useEffect , useRef } from 'react'
 import { toast } from 'react-toastify';
 
 const Testmonial = () => {
 
   const [render , setRender] = useState(false);
+  const modalRef = useRef(null);
 
   const READTESTMONIAL_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readtestmonialinfo`;
   const [testmonialData , setTestmonialData] = useState([]);
@@ -73,9 +74,11 @@ const Testmonial = () => {
 
 
   const handleModalData = (index) => {
+    modalRef.current.blur();
     setInputUpdateData({_id : testmonialData[index]._id , subject : testmonialData[index].subject , personName : testmonialData[index].personName , personRole : testmonialData[index].personRole , testmonialEnable : testmonialData[index].testmonialEnable});
   }
   const handleReset = (e) => {
+    modalRef.current.blur();
     setInputUpdateData({_id : '' , subject : '' , personName : '' , personRole : '' , testmonialEnable : false});
   }
 
@@ -161,7 +164,7 @@ const Testmonial = () => {
             <label className="form-check-label" htmlFor="testmonialEnable">Enable the Testmonial In Portfolio</label>
           </div>
           <div className="mt-3">
-            <button type="button" className="btn btn-primary" onClick={ (e) => handleAdd(e)}>Save Experience Info</button>
+            <button type="button" className="btn btn-primary" onClick={ (e) => handleAdd(e)}>Save Testmonial Info</button>
           </div>
         </div>
       </div>
@@ -211,7 +214,7 @@ const Testmonial = () => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h1 className="modal-title fs-5" id="exampleModalLabel">{inputUpdateData._id}</h1>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => {handleReset()}}></button>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={modalRef} onClick={() => {handleReset()}}></button>
                 </div>
                 <div className="modal-body">
                   <div className="mt-3">
@@ -233,7 +236,7 @@ const Testmonial = () => {
                 </div>
                 <div className="modal-footer">
                   <div className="mt-3">
-                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update Experience Info</button>
+                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update Testmonial Info</button>
                   </div>
                 </div>
               </div>

@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 const Project = () => {
 
   const [render , setRender] = useState(false);
+  const modalRef = useRef(null);
 
   const READPROJECT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readprojectinfo`;
   const [projectData , setProjectData] = useState([]);
@@ -74,9 +75,11 @@ const Project = () => {
 
 
   const handleModalData = (index) => {
+    modalRef.current.blur();
     setInputUpdateData({_id : projectData[index]._id , projectName : projectData[index].projectName , projectDescription : projectData[index].projectDescription , projectEnable : projectData[index].projectEnable});
   }
   const handleReset = (e) => {
+    modalRef.current.blur();
     setInputUpdateData({_id : '' , projectName : '' , projectDescription : '' , projectEnable : false});
     fileUpdateRef.current.value = '';
   }
@@ -211,7 +214,7 @@ const Project = () => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h1 className="modal-title fs-5" id="exampleModalLabel">{inputUpdateData._id}</h1>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => {handleReset()}}></button>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={modalRef} onClick={() => {handleReset()}}></button>
                 </div>
                 <div className="modal-body">
                   <div className="mt-3">
@@ -233,7 +236,7 @@ const Project = () => {
                 </div>
                 <div className="modal-footer">
                   <div className="mt-3">
-                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update Dashboard Info</button>
+                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update Project Info</button>
                   </div>
                 </div>
               </div>
