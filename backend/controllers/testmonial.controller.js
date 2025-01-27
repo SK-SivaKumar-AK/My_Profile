@@ -121,6 +121,29 @@ const deleteInfo = async (req , res) => {
     }
 };
 
+const readInfoInFront = async (req , res) => {
+    try {
+        
+        const userId = process.env.USER_ID;
+
+        const readInfo = await testmonialTable.find({userId : userId , testmonialEnable: true});
+
+        return res.status(200).json({
+            Result : true,
+            Message : 'Read SuccessFully!',
+            data : readInfo
+        });
+    
+    } catch (error) {
+        
+        return res.status(404).json({
+            Result : false,
+            Message : error.message
+        });
+    
+    }
+}
+
 
 
 /* export functions */
@@ -128,5 +151,6 @@ module.exports = {
     addInfo,
     readInfo,
     updateInfo,
-    deleteInfo
+    deleteInfo,
+    readInfoInFront
 }

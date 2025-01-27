@@ -9,7 +9,7 @@ const dashboardRouter = express.Router();
 
 
 /* Call another files */
-const { addInfo , readInfo , updateInfo , deleteInfo } = require('../controllers/dashboard.controller');
+const { addInfo , readInfo , updateInfo , deleteInfo , readInfoInFront } = require('../controllers/dashboard.controller');
 const { uploadImage } = require('../middlewares/fileUpload.middleware');
 const { jwtAuthenticate } = require('../middlewares/jwtAuth.middleware');
 
@@ -20,6 +20,9 @@ dashboardRouter.route('/adddashboardinfo').post(jwtAuthenticate , uploadImage , 
 dashboardRouter.route('/readdashboardinfo').get(jwtAuthenticate , readInfo);
 dashboardRouter.route('/updatedashboardinfo/:id').post(jwtAuthenticate , uploadImage , updateInfo);
 dashboardRouter.route('/deletedashboardinfo/:id').delete(jwtAuthenticate , deleteInfo);
+
+
+dashboardRouter.route('/readdashboardinfofront').get(readInfoInFront);
 
 
 

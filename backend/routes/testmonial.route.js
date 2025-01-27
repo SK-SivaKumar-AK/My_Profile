@@ -9,7 +9,7 @@ const testmonialRouter = express.Router();
 
 
 /* Call another files */
-const { addInfo , readInfo , updateInfo , deleteInfo } = require('../controllers/testmonial.controller');
+const { addInfo , readInfo , updateInfo , deleteInfo , readInfoInFront } = require('../controllers/testmonial.controller');
 const { jwtAuthenticate } = require('../middlewares/jwtAuth.middleware');
 const { noUploadImage } = require('../middlewares/fileUpload.middleware');
 
@@ -19,6 +19,8 @@ testmonialRouter.route('/addtestmonialinfo').post(jwtAuthenticate , noUploadImag
 testmonialRouter.route('/readtestmonialinfo').get(jwtAuthenticate , readInfo);
 testmonialRouter.route('/updatetestmonialinfo/:id').post(jwtAuthenticate , noUploadImage , updateInfo);
 testmonialRouter.route('/deletetestmonialinfo/:id').delete(jwtAuthenticate , deleteInfo);
+
+testmonialRouter.route('/readtestmonialinfofront').get(readInfoInFront);
 
 
 
