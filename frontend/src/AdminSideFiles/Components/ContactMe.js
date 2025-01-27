@@ -1,5 +1,7 @@
 import React , { useState , useEffect , useRef } from 'react'
 import { toast } from 'react-toastify';
+import ContactMeTable from './Tables/ContactMeTable';
+import ContactMeModal from './Modals/ContactMeModal';
 
 const ContactMe = () => {
 
@@ -17,6 +19,7 @@ const ContactMe = () => {
    
   const DELETECONTACT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/deletecontactinfo`;
 
+
   useEffect(() => {
     const getContactData = async () => {
       const response = await fetch(READCONTACT_URL , {
@@ -31,6 +34,7 @@ const ContactMe = () => {
     getContactData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   } , [render]);
+
 
   const handleAddChange = (e) => {
     const { name , value , type , files , checked } = e.target;
@@ -69,6 +73,7 @@ const ContactMe = () => {
     }
   }
 
+  
   const handleModalData = (index) => {
     modalRef.current.blur();
     setInputUpdateData({_id : contactData[index]._id , streetName : contactData[index].streetName , areaName : contactData[index].areaName , cityName : contactData[index].cityName , stateName : contactData[index].stateName , countryName : contactData[index].countryName , pincode : contactData[index].pincode , phoneNumber : contactData[index].phoneNumber , profileEnable : contactData[index].profileEnable });
@@ -180,104 +185,10 @@ const ContactMe = () => {
       </div>
       <div className="row mt-5">
         <div className="col-12">
-          <h4>History</h4>
-          <table className="table table-bordered mb-5">
-            <thead>
-              <tr className='text-center'>
-                <th>S.No</th>
-                <th>Street Name</th>
-                <th>Area Name</th>
-                <th>City Name</th>
-                <th>State Name</th>
-                <th>Country Name</th>
-                <th>Pincode</th>
-                <th>Phone</th>
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                contactData && contactData.length > 0 ?
-
-                contactData.map((item , index) => {
-                  return (
-                      <tr key={item._id}>
-                        <td className='text-center'>{index + 1}</td>
-                        <td>{item.streetName}</td>
-                        <td>{item.areaName}</td>
-                        <td>{item.cityName}</td>
-                        <td>{item.stateName}</td>
-                        <td>{item.countryName}</td>
-                        <td>{item.pincode}</td>
-                        <td>{item.phoneNumber}</td>
-                        <td className='text-center'><button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModal" onClick={() => handleModalData(index)}>Edit</button></td>
-                        <td className='text-center'><button type="button" className="btn btn-danger" onClick={ () => handleDelete(item._id)}>Delete</button></td>
-                      </tr>
-                  );
-                })
-                
-
-                :
-
-                <tr>
-                  <td colSpan={9} className='text-center'>No Data Available</td>
-                </tr>
-
-              }
-            </tbody>
-          </table>
-          <div className="modal fade" id="updateModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h1 className="modal-title fs-5" id="exampleModalLabel">{inputUpdateData._id}</h1>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={modalRef} onClick={() => {handleReset()}}></button>
-                </div>
-                <div className="modal-body">
-                  <div className="mt-3">
-                    <label htmlFor="updateStreetName" className="form-label">Street Name</label>
-                    <input type="text" className="form-control" id="updateStreetName" name="streetName" placeholder="Please Enter Street Name" value={inputUpdateData.streetName} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updateAreaName" className="form-label">Area Name</label>
-                    <input type="text" className="form-control" id="updateAreaName" name="areaName" placeholder="Please Enter Area Name" value={inputUpdateData.areaName} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updateCityName" className="form-label">City Name</label>
-                    <input type="text" className="form-control" id="updateCityName" name="cityName" placeholder="Please Enter City Name" value={inputUpdateData.cityName} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updateStateName" className="form-label">State Name</label>
-                    <input type="text" className="form-control" id="updateStateName" name="stateName" placeholder="Please Enter State Name" value={inputUpdateData.stateName} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updateCountryName" className="form-label">Country Name</label>
-                    <input type="text" className="form-control" id="updateCountryName" name="countryName" placeholder="Please Enter Country Name" value={inputUpdateData.countryName} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updatePincode" className="form-label">Pincode</label>
-                    <input type="text" className="form-control" id="updatePincode" name="pincode" placeholder="Please Enter Pincode" value={inputUpdateData.pincode} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updatePhoneNumber" className="form-label">Pincode</label>
-                    <input type="text" className="form-control" id="updatePhoneNumber" name="phoneNumber" placeholder="Please Enter Phone" value={inputUpdateData.phoneNumber} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="form-check form-switch mt-3">
-                    <input className="form-check-input" type="checkbox" role="switch" id="updateProfileEnable" name="profileEnable" checked={inputUpdateData.profileEnable}  onChange={ (e) => handleUpdateChange(e)}/>
-                    <label className="form-check-label" htmlFor="updateProfileEnable">Enable the Profile In Portfolio</label>
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <div className="mt-3">
-                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update Contact Info</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ContactMeTable contactData={contactData} handleModalData={handleModalData} handleDelete={handleDelete}/>
         </div>
       </div>
+      <ContactMeModal inputUpdateData={inputUpdateData} handleUpdateChange={handleUpdateChange} handleUpdate={handleUpdate} handleReset={handleReset} modalRef={modalRef}/>
     </>
   )
 }

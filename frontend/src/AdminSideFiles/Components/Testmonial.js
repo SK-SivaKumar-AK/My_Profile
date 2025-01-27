@@ -1,5 +1,7 @@
 import React , { useState , useEffect , useRef } from 'react'
 import { toast } from 'react-toastify';
+import TestmonialTable from './Tables/TestmonialTable';
+import TestmonialModal from './Modals/TestmonialModal';
 
 const Testmonial = () => {
 
@@ -170,80 +172,10 @@ const Testmonial = () => {
       </div>
       <div className="row mt-5">
         <div className="col-12">
-          <h4>History</h4>
-          <table className="table table-bordered mb-5">
-            <thead>
-              <tr className='text-center'>
-                <th>S.No</th>
-                <th>Subject</th>
-                <th>Person Name</th>
-                <th>Person Role</th>
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                testmonialData && testmonialData.length > 0 ?
-
-                testmonialData.map((item , index) => {
-                  return (
-                      <tr key={item._id}>
-                        <td className='text-center'>{index + 1}</td>
-                        <td>{item.subject}</td>
-                        <td>{item.personName}</td>
-                        <td>{item.personRole}</td>
-                        <td className='text-center'><button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModal" onClick={() => handleModalData(index)}>Edit</button></td>
-                        <td className='text-center'><button type="button" className="btn btn-danger" onClick={ () => handleDelete(item._id)}>Delete</button></td>
-                      </tr>
-                  );
-                })
-                
-
-                :
-
-                <tr>
-                  <td colSpan={6} className='text-center'>No Data Available</td>
-                </tr>
-
-              }
-            </tbody>
-          </table>
-          <div className="modal fade" id="updateModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h1 className="modal-title fs-5" id="exampleModalLabel">{inputUpdateData._id}</h1>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={modalRef} onClick={() => {handleReset()}}></button>
-                </div>
-                <div className="modal-body">
-                  <div className="mt-3">
-                    <label htmlFor="updateSubject" className="form-label">Subject</label>
-                    <input type="text" className="form-control" id="updateSubject" name="subject" placeholder="Please Enter Subject" value={inputUpdateData.subject} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updatePersonName" className="form-label">Person Name</label>
-                    <input type="text" className="form-control" id="updatePersonName" name="personName" placeholder="Please Enter Person Name" value={inputUpdateData.personName} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updatePersonRole" className="form-label">Person Role</label>
-                    <input type="text" className="form-control" id="updatePersonRole" name="personRole" placeholder="Please Enter Person Role" value={inputUpdateData.personRole} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="form-check form-switch mt-3">
-                    <input className="form-check-input" type="checkbox" role="switch" id="updateTestmonialEnable" name="testmonialEnable" checked={inputUpdateData.testmonialEnable}  onChange={ (e) => handleUpdateChange(e)}/>
-                    <label className="form-check-label" htmlFor="updateTestmonialEnable">Enable the Testmonial In Portfolio</label>
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <div className="mt-3">
-                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update Testmonial Info</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <TestmonialTable testmonialData={testmonialData} handleModalData={handleModalData} handleDelete={handleDelete}/>
         </div>
       </div>
+      <TestmonialModal inputUpdateData={inputUpdateData} handleUpdateChange={handleUpdateChange} handleUpdate={handleUpdate} handleReset={handleReset} modalRef={modalRef}/>
     </>
   )
 }

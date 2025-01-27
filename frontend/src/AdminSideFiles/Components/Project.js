@@ -1,5 +1,7 @@
 import React , { useState , useRef, useEffect } from 'react'
 import { toast } from 'react-toastify';
+import ProjectTable from './Tables/ProjectTable';
+import ProjectModal from './Modals/ProjectModal';
 
 const Project = () => {
 
@@ -170,80 +172,10 @@ const Project = () => {
       </div>
       <div className="row mt-5">
         <div className="col-12">
-          <h4>History</h4>
-          <table className="table table-bordered mb-5">
-            <thead>
-              <tr className='text-center'>
-                <th>S.No</th>
-                <th>Project Name</th>
-                <th>Project Description</th>
-                <th>Project Image</th>
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                projectData && projectData.length > 0 ?
-
-                projectData.map((item , index) => {
-                  return (
-                      <tr key={item._id}>
-                        <td className='text-center'>{index + 1}</td>
-                        <td>{item.projectName}</td>
-                        <td>{item.projectDescription}</td>
-                        <td className='text-center'><img src={`${process.env.REACT_APP_BASE_URL}assets/uploads/${item.projectImage}`} alt={item.projectImage} width={'50px'} height={'50px'} /></td>
-                        <td className='text-center'><button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModal" onClick={() => handleModalData(index)}>Edit</button></td>
-                        <td className='text-center'><button type="button" className="btn btn-danger" onClick={ () => handleDelete(item._id)}>Delete</button></td>
-                      </tr>
-                  );
-                })
-                
-
-                :
-
-                <tr>
-                  <td colSpan={6} className='text-center'>No Data Available</td>
-                </tr>
-
-              }
-            </tbody>
-          </table>
-          <div className="modal fade" id="updateModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h1 className="modal-title fs-5" id="exampleModalLabel">{inputUpdateData._id}</h1>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={modalRef} onClick={() => {handleReset()}}></button>
-                </div>
-                <div className="modal-body">
-                  <div className="mt-3">
-                    <label htmlFor="updateProjectName" className="form-label">Main Content</label>
-                    <input type="text" className="form-control" id="updateProjectName" name="projectName" value={inputUpdateData.projectName} onChange={(e) => {handleUpdateChange(e)}}/>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updateProjectDescription" className="form-label">Sub Content</label>
-                    <textarea className="form-control" id="updateProjectDescription" name="projectDescription" rows="3" value={inputUpdateData.projectDescription}  onChange={(e) => {handleUpdateChange(e)}}></textarea>
-                  </div>
-                  <div className="form-check form-switch mt-3">
-                    <input className="form-check-input" type="checkbox" role="switch" id="updateProjectEnable" name="projectEnable" checked={inputUpdateData.projectEnable} onChange={ (e) => handleUpdateChange(e)}/>
-                    <label className="form-check-label" htmlFor="updateProjectEnable">Enable the Project In Portfolio</label>
-                  </div>
-                  <div className="mt-3">
-                    <label className="form-label text-dark" htmlFor="image">User Picture</label>
-                    <input type="file" className="form-control" id="image" name="image" ref={fileUpdateRef}  onChange={(e) => {handleUpdateChange(e)}}/>
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <div className="mt-3">
-                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update Project Info</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProjectTable projectData={projectData} handleModalData={handleModalData} handleDelete={handleDelete}/>
         </div>
       </div>
+      <ProjectModal inputUpdateData={inputUpdateData} handleUpdateChange={handleUpdateChange} handleUpdate={handleUpdate} handleReset={handleReset} fileUpdateRef={fileUpdateRef} modalRef={modalRef}/>
     </>
   )
 }

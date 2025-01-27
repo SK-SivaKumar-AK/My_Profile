@@ -1,5 +1,7 @@
 import React , { useState , useEffect , useRef } from 'react'
 import { toast } from 'react-toastify';
+import ExperienceTable from './Tables/ExperienceTable';
+import ExperienceModal from './Modals/ExperienceModal';
 
 const Experience = () => {
 
@@ -186,97 +188,11 @@ const Experience = () => {
       </div>
       <div className="row mt-5">
         <div className="col-12">
-          <h4>History</h4>
-          <table className="table table-bordered mb-5">
-            <thead>
-              <tr className='text-center'>
-                <th>S.No</th>
-                <th>Role Name</th>
-                <th>Role Description</th>
-                <th>Year</th>
-                <th>Company Name</th>
-                <th>Company Location</th>
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                experienceData && experienceData.length > 0 ?
-
-                experienceData.map((item , index) => {
-                  return (
-                      <tr key={item._id}>
-                        <td className='text-center'>{index + 1}</td>
-                        <td>{item.roleName}</td>
-                        <td>{item.roleDescription}</td>
-                        <td>{item.year}</td>
-                        <td>{item.companyName}</td>
-                        <td>{item.companyLocation}</td>
-                        <td className='text-center'><button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModal" onClick={() => handleModalData(index)}>Edit</button></td>
-                        <td className='text-center'><button type="button" className="btn btn-danger" onClick={ () => handleDelete(item._id)}>Delete</button></td>
-                      </tr>
-                  );
-                })
-                
-
-                :
-
-                <tr>
-                  <td colSpan={6} className='text-center'>No Data Available</td>
-                </tr>
-
-              }
-            </tbody>
-          </table>
-          <div className="modal fade" id="updateModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h1 className="modal-title fs-5" id="exampleModalLabel">{inputUpdateData._id}</h1>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ref={modalRef} onClick={() => {handleReset()}}></button>
-                </div>
-                <div className="modal-body">
-                  <div className="mt-3">
-                    <label htmlFor="updateRoleName" className="form-label">Role Name</label>
-                    <input type="text" className="form-control" id="updateRoleName" name="roleName" value={inputUpdateData.roleName} onChange={(e) => {handleUpdateChange(e)}}/>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updateRoleDescription" className="form-label">Role Description</label>
-                    <textarea className="form-control" id="updateRoleDescription" name="roleDescription" rows="3" value={inputUpdateData.roleDescription}  onChange={(e) => {handleUpdateChange(e)}}></textarea>
-                  </div>
-                  <div className="mt-3">
-                    <label className="form-label text-dark" htmlFor="updateYear">Year</label>
-                    <select className="form-select" aria-label="Default select" id="updateYear" name="year" value={inputUpdateData.year} onChange={ (e) => handleUpdateChange(e)}>
-                      <option value="">Open this select year</option>
-                      <option value="2018">2018</option>
-                      <option value="2019">2019</option>
-                      <option value="2020">2020</option>
-                    </select>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updateCompanyName" className="form-label">Company Name</label>
-                    <input type="text" className="form-control" id="updateCompanyName" name="companyName" placeholder="Please Enter Company Name" value={inputUpdateData.companyName} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="mt-3">
-                    <label htmlFor="updateCompanyLocation" className="form-label">Company Location</label>
-                    <input type="text" className="form-control" id="updateCompanyLocation" name="companyLocation" placeholder="Please Enter Company Location" value={inputUpdateData.companyLocation} onChange={ (e) => handleUpdateChange(e)}/>
-                  </div>
-                  <div className="form-check form-switch mt-3">
-                    <input className="form-check-input" type="checkbox" role="switch" id="updateExperienceEnable" name="experienceEnable" checked={inputUpdateData.experienceEnable} onChange={ (e) => handleUpdateChange(e)}/>
-                    <label className="form-check-label" htmlFor="updateExperienceEnable">Enable the Experience In Portfolio</label>
-                  </div>
-                </div>
-                <div className="modal-footer">
-                  <div className="mt-3">
-                    <button type="button" className="btn btn-primary" onClick={(e) => {handleUpdate(e)}}>Update Experience Info</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ExperienceTable experienceData={experienceData} handleModalData={handleModalData} handleDelete={handleDelete}/>
+          
         </div>
       </div>
+      <ExperienceModal inputUpdateData={inputUpdateData} handleUpdateChange={handleUpdateChange} handleUpdate={handleUpdate} handleReset={handleReset} modalRef={modalRef}/>
     </>
   )
 }
