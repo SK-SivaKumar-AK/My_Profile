@@ -28,6 +28,14 @@ const HeaderModal = ({userData , inputUpdateData , handleReset , handleUpdateCha
                             <label className="form-label text-dark" htmlFor="updateImage">User Profile Picture</label>
                             <input type="file" className="form-control" id="updateImage" name="image" ref={fileUpdateRef} onChange={ (e) => handleUpdateChange(e)} />
                         </div>
+                        <div className="mb-3">
+                            <label className="form-label text-dark" htmlFor="updateResume">User Resume</label>
+                            <input type="file" className="form-control" id="updateResume" name="resume" onChange={ (e) => handleUpdateChange(e)} ref={fileUpdateRef}/>
+                        </div>
+                        <div className="form-check form-switch mt-3">
+                            <input className="form-check-input" type="checkbox" role="switch" id="updateUserEnable" name="userEnable" checked={inputUpdateData.userEnable}  onChange={ (e) => handleUpdateChange(e)}/>
+                            <label className="form-check-label" htmlFor="updateUserEnable">Enable the User In Portfolio</label>
+                        </div>
                         
                         <hr />
                         

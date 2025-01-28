@@ -1,0 +1,29 @@
+.container{
+    background-color: #000000;
+    font-family: sans-serif;
+    min-height: 100vh;
+}
+header{
+    background-color: #000000;
+}
+
+.button_color{
+    background-color: yellow;
+}
+.button_color:hover{
+    background-color: yellow;
+}
+
+.nav_links:hover{
+    background-color: yellow;
+    color: #000000;
+    cursor: pointer;
+}  
+
+.dropdown_color{
+    background-color: yellow;
+}
+.dropdown_item_color{
+    background-color: yellow;
+    color: #000000;
+}

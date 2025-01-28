@@ -22,13 +22,15 @@ const userSignin = async (req , res) => {
     try {
 
         const { userName , userEmail , userPassword } = req.body;
-        const { image } = req.files;
-
+        const { image , resume } = req.files;
+        
         const addUser = new userTable({
             userName : userName,
             userEmail : userEmail,
             userPassword : userPassword,
-            userProfileImage : image[0].filename
+            userProfileImage : image[0].filename,
+            userResume : resume[0].filename,
+            userEnable : true
         });
 
         const addedUser = await addUser.save();
@@ -146,15 +148,19 @@ const userInfoUpdate = async (req , res) => {
     try {
 
         const Id = req.params.id;
-        const { userName , userEmail , userPassword } = req.body;
+        const { userName , userEmail , userPassword , userEnable } = req.body;
 
         const updateUser = {
             userName : userName,
             userEmail : userEmail,
-            userPassword : userPassword
+            userPassword : userPassword,
+            userEnable : userEnable
         };
         if(req.files && req.files.image && req.files.image.length > 0){
             updateUser.userProfileImage = req.files.image[0].filename;
+        }
+        if(req.files && req.files.resume && req.files.resume.length > 0){
+            updateUser.userResume = req.files.resume[0].filename;
         }
 
         const updatedUser = await userTable.findOneAndUpdate( {_id : Id} , updateUser , {new:true});

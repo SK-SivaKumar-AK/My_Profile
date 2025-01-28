@@ -9,11 +9,22 @@ const fs = require('fs');
 const storage = multer.diskStorage({
     destination : (req , file , cb) => {
 
-        const uploadPath = path.join(__dirname , '..' , 'assets' , 'uploads');
-        if(!fs.existsSync(uploadPath)){
-            fs.mkdirSync(uploadPath , { recursive : true });
+        
+        if (file.fieldname === 'image') {
+            const imageUploadPath = path.join(__dirname , '..' , 'assets' , 'uploads' , 'images');
+            if(!fs.existsSync(imageUploadPath)){
+                fs.mkdirSync(imageUploadPath , { recursive : true });
+            }
+            cb(null, imageUploadPath);  // Store image in 'uploads/images' folder
+        } else if (file.fieldname === 'resume') {
+            const resumesUploadPath = path.join(__dirname , '..' , 'assets' , 'uploads' , 'resumes');
+            if(!fs.existsSync(resumesUploadPath)){
+                fs.mkdirSync(resumesUploadPath , { recursive : true });
+            }
+            cb(null, resumesUploadPath); // Store resume in 'uploads/resumes' folder
+        } else {
+            cb(new Error('Invalid file type'), false);
         }
-        cb(null , uploadPath);
 
     },
     filename : (req , file , cb) => {
@@ -25,15 +36,17 @@ const storage = multer.diskStorage({
 
 const filefilter = (req , file , cb) => {
 
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-    if(allowedTypes.includes(file.mimetype)){
+    const allowedImageTypes = ['image/jpeg', 'image/png', 'image/jpg' , ];
+    const allowedPdfTypes = ['application/pdf'];
 
-        cb(null , true);
-
-    }else{
-
-        cb(new Error('Invalid File Format.'));
-
+    if (file.fieldname === 'image' && allowedImageTypes.includes(file.mimetype)) {
+        cb(null, true);
+    }
+    else if (file.fieldname === 'resume' && allowedPdfTypes.includes(file.mimetype)) {
+        cb(null, true); 
+    } 
+    else {
+        cb(new Error('Invalid File Format. Only JPEG, PNG images, and PDF files are allowed.'));
     }
 };
 
@@ -49,7 +62,12 @@ const uploadImage = uploads.fields([
     {
         name : 'image',
         maxCount : 1
+    },
+    {
+        name : 'resume',
+        maxCount : 1
     }
+
 ]);
 
 const noUploadImage = uploads.none();

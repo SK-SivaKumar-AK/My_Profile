@@ -12,9 +12,11 @@ const AdminRegisterPage = () => {
     
 
     const handleChange = (e) => {
-        const { name , value , type , files } = e.target;
+        const { name , value , type , files , checked } = e.target;
         if(type === 'file'){
             setInputData({ ...inputData , [name] : files[0] });
+        }else if(type === 'checkbox'){
+            setInputData({ ...inputData , [name] : checked });
         }else{
             setInputData({ ...inputData , [name] : value });
         }
@@ -34,7 +36,7 @@ const AdminRegisterPage = () => {
         const responded = await response.json();
         
         if(responded.Result === true){
-            setInputData({ userName: '', userEmail: '', userPassword: '', image: null });
+            setInputData({ userName: '', userEmail: '', userPassword: ''});
             fileInputRef.current.value = '';
             toast.success( responded.Message, {
                 position : 'top-center',
@@ -72,6 +74,10 @@ const AdminRegisterPage = () => {
                     <div className="mb-3">
                         <label className="form-label" htmlFor="image">User Profile Picture</label>
                         <input type="file" className="form-control" id="image" name="image" onChange={ (e) => handleChange(e)} ref={fileInputRef}/>
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="resume">User Resume</label>
+                        <input type="file" className="form-control" id="resume" name="resume" onChange={ (e) => handleChange(e)} ref={fileInputRef}/>
                     </div>
                     <div className="mb-3 d-flex justify-content-between">
                         <button className="btn btn-primary" type="submit" onClick={(e) => handleSubmit(e)}>Register</button>

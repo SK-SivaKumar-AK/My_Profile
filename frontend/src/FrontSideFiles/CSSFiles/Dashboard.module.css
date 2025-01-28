@@ -1,0 +1,11 @@
+.name{
+    font-size: 58px;
+    color: yellow;
+    text-shadow: 20px -10px 15px yellow;
+}
+.button_color{
+    color: yellow;
+}
+.button_color:hover{
+    background-color: yellow;
+}

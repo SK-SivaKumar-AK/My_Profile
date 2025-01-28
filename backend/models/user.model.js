@@ -22,6 +22,14 @@ const userStructure = new mongoose.Schema({
     userProfileImage : {
         type : String,
         required : true
+    },
+    userResume : {
+        type : String,
+        required : true
+    },
+    userEnable : {
+        type : Boolean,
+        required : true
     }
 });
 

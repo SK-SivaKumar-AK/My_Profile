@@ -25,7 +25,7 @@ const ProjectTable = ({projectData , handleModalData , handleDelete}) => {
                     <td className='text-center'>{index + 1}</td>
                     <td>{item.projectName}</td>
                     <td>{item.projectDescription}</td>
-                    <td className='text-center'><img src={`${process.env.REACT_APP_BASE_URL}assets/uploads/${item.projectImage}`} alt={item.projectImage} width={'50px'} height={'50px'} /></td>
+                    <td className='text-center'><img src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${item.projectImage}`} alt={item.projectImage} width={'50px'} height={'50px'} /></td>
                     <td className='text-center'><button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModal" onClick={() => handleModalData(index)}>Edit</button></td>
                     <td className='text-center'><button type="button" className="btn btn-danger" onClick={ () => handleDelete(item._id)}>Delete</button></td>
                     </tr>
