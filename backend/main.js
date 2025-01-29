@@ -36,7 +36,9 @@ const { projectRouter } = require('./routes/project.route');
 const { experienceRouter } = require('./routes/experience.route');
 const { testmonialRouter } = require('./routes/testmonial.route');
 const { contactRouter } = require('./routes/contact.route');
-
+app.get('/', (req, res) => {
+    res.send('This is the backend home route!!');
+});
 
 
 /* Call another files functions*/
