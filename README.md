@@ -15,6 +15,10 @@ Packages Installed:
 #8 CORS policies  => npm install cors
 #7 Mail => npm install nodemailer
 
+mongodb atlas connection:
+username : sksivakumarak
+password : BshvGiuYPqKBm7Ur
+mongodb+srv://sksivakumarak:BshvGiuYPqKBm7Ur@myprofile.e5wg6.mongodb.net/?retryWrites=true&w=majority&appName=MyProfile
 
 
 
