@@ -7,7 +7,7 @@ import FrontMain from './FrontSideFiles/Layouts/FrontMain';
 const Main = () => {
   return (
     <>
-        <BrowserRouter>
+        <BrowserRouter basename="/admin">
             <ToastContainer theme='dark'/>
             <Routes>
                 <Route path={'/*'} element={<FrontMain />}/>
