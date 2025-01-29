@@ -21,7 +21,7 @@ experienceRouter.route('/readexperienceinfo').get(jwtAuthenticate , readInfo);
 experienceRouter.route('/updateexperienceinfo/:id').post(jwtAuthenticate , noUploadImage , updateInfo);
 experienceRouter.route('/deleteexperienceinfo/:id').delete(jwtAuthenticate , deleteInfo);
 
-experienceRouter.route('/readexperienceinfofront').get(readInfoInFront);
+experienceRouter.route('/readexperienceinfofront/:Id').get(readInfoInFront);
 
 
 

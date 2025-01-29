@@ -9,7 +9,7 @@ const contactRouter = express.Router();
 
 
 /* Call another files */
-const { addInfo , readInfo , updateInfo , deleteInfo , readInfoInFront } = require('../controllers/contact.controller');
+const { addInfo , readInfo , updateInfo , deleteInfo , readInfoInFront , contactMail } = require('../controllers/contact.controller');
 const { jwtAuthenticate } = require('../middlewares/jwtAuth.middleware');
 const { noUploadImage } = require('../middlewares/fileUpload.middleware');
 
@@ -20,8 +20,9 @@ contactRouter.route('/addcontactinfo').post(jwtAuthenticate , noUploadImage , ad
 contactRouter.route('/readcontactinfo').get(jwtAuthenticate , readInfo);
 contactRouter.route('/updatecontactinfo/:id').post(jwtAuthenticate , noUploadImage , updateInfo);
 contactRouter.route('/deletecontactinfo/:id').delete(jwtAuthenticate , deleteInfo);
+contactRouter.route('/contactmail').post(noUploadImage , contactMail);
 
-contactRouter.route('/readcontactinfofront').get(readInfoInFront);
+contactRouter.route('/readcontactinfofront/:Id').get(readInfoInFront);
 
 
 

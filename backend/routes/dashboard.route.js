@@ -22,7 +22,7 @@ dashboardRouter.route('/updatedashboardinfo/:id').post(jwtAuthenticate , uploadI
 dashboardRouter.route('/deletedashboardinfo/:id').delete(jwtAuthenticate , deleteInfo);
 
 
-dashboardRouter.route('/readdashboardinfofront').get(readInfoInFront);
+dashboardRouter.route('/readdashboardinfofront/:Id').get(readInfoInFront);
 
 
 

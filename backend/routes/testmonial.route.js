@@ -20,7 +20,7 @@ testmonialRouter.route('/readtestmonialinfo').get(jwtAuthenticate , readInfo);
 testmonialRouter.route('/updatetestmonialinfo/:id').post(jwtAuthenticate , noUploadImage , updateInfo);
 testmonialRouter.route('/deletetestmonialinfo/:id').delete(jwtAuthenticate , deleteInfo);
 
-testmonialRouter.route('/readtestmonialinfofront').get(readInfoInFront);
+testmonialRouter.route('/readtestmonialinfofront/:Id').get(readInfoInFront);
 
 
 

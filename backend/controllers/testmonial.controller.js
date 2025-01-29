@@ -124,7 +124,7 @@ const deleteInfo = async (req , res) => {
 const readInfoInFront = async (req , res) => {
     try {
         
-        const userId = process.env.USER_ID;
+        const userId = req.params.Id;
 
         const readInfo = await testmonialTable.find({userId : userId , testmonialEnable: true});
 

@@ -21,7 +21,7 @@ aboutRouter.route('/readaboutinfo').get(jwtAuthenticate , readInfo);
 aboutRouter.route('/updateaboutinfo/:id').post(jwtAuthenticate , uploadImage , updateInfo);
 aboutRouter.route('/deleteaboutinfo/:id').delete(jwtAuthenticate , deleteInfo);
 
-aboutRouter.route('/readaboutinfofront').get(readInfoInFront);
+aboutRouter.route('/readaboutinfofront/:Id').get(readInfoInFront);
 
 
 

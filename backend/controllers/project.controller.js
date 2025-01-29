@@ -126,9 +126,32 @@ const deleteInfo = async (req , res) => {
 const readInfoInFront = async (req , res) => {
     try {
         
-        const userId = process.env.USER_ID;
+        const userId = req.params.Id;
 
         const readInfo = await projectTable.find({userId : userId , projectEnable: true});
+
+        return res.status(200).json({
+            Result : true,
+            Message : 'Read SuccessFully!',
+            data : readInfo
+        });
+    
+    } catch (error) {
+        
+        return res.status(404).json({
+            Result : false,
+            Message : error.message
+        });
+    
+    }
+}
+
+const readSingleInfoInFront = async (req , res) => {
+    try {
+        
+        const Id = req.params.id;
+
+        const readInfo = await projectTable.find({_id : Id , projectEnable: true});
 
         return res.status(200).json({
             Result : true,
@@ -153,5 +176,6 @@ module.exports = {
     readInfo,
     updateInfo,
     deleteInfo,
-    readInfoInFront
+    readInfoInFront,
+    readSingleInfoInFront
 }

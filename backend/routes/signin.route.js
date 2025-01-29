@@ -9,7 +9,7 @@ const signinRouter = express.Router();
 
 
 /* Call another files */
-const { userSignin , userData , userInfoUpdate , userLogin , userLogout } = require('../controllers/signin.controller');
+const { userSignin , userData , userInfoUpdate , userLogin , userLogout , userDataFront } = require('../controllers/signin.controller');
 const { uploadImage , noUploadImage } = require('../middlewares/fileUpload.middleware');
 const { jwtAuthenticate } = require('../middlewares/jwtAuth.middleware');
 
@@ -24,6 +24,8 @@ signinRouter.route('/userinfoupdate/:id').post(jwtAuthenticate , uploadImage , u
 
 signinRouter.route('/logout').get(userLogout);
 
+
+signinRouter.route('/getuserfront').get(userDataFront);
 
 
 /* export functions */

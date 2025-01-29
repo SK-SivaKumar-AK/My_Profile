@@ -13,6 +13,7 @@ Packages Installed:
 #6 bcrypt  => npm install bcryptjs
 #7 cookieparser   =>  npm install cookie-parser
 #8 CORS policies  => npm install cors
+#7 Mail => npm install nodemailer
 
 
 

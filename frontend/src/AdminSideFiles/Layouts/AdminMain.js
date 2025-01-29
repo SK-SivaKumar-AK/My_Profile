@@ -3,8 +3,6 @@ import { Routes , Route } from 'react-router-dom'
 import AdminEntryPage from './AdminEntryPage'
 import AdminLoginPage from '../Components/AdminLoginPage'
 import AdminRegisterPage from '../Components/AdminRegisterPage'
-// import AdminLoginPage from './AdminLoginPage'
-// import AdminRegisterPage from './AdminRegisterPage'
 
 import AdminMainPage from './AdminMainPage'
 import Dashboard from '../Components/Dashboard';

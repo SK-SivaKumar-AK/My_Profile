@@ -1,45 +1,32 @@
 import React from 'react'
-import { Outlet, Link } from 'react-router-dom'
-import SkLogo from '../Images/SKLogo.png'
+import { Outlet } from 'react-router-dom'
 import style from '../CSSFiles/FrontMainPage.module.css'
+import Header from '../Components/Header'
 
-const FrontMainPage = () => {
+const FrontMainPage = ({userData , loading}) => {
+
   return (
     <>
-        <section className={`container-fluid  ${style.container}`}>
-            <header className={`row p-3 d-flex align-items-center sticky-top`}>
-                <div className="col-4 text-center">
-                    <img src={SkLogo} alt="logo" width={'70px'} height={'70px'}/>
+        {
+            loading ? 
+            
+            <section className={`container-fluid  ${style.container}`}>
+                <div className="row vh-100 d-flex justify-content-center align-items-center">
+                    <div className="col-4">
+                        <h1 className={`text-center ${style.loading_text}`}>Loading...</h1>
+                    </div>
                 </div>
-                <div className="col-6 d-lg-flex d-none justify-content-end">
-                    <ul className='list-unstyled d-flex'>
-                        <Link to={'/'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>Dasboard</li></Link>
-                        <Link to={'/aboutme'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>AboutMe</li></Link>
-                        <Link to={'/projects'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>Projects</li></Link>
-                        <Link to={'/experience'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>Experience</li></Link>
-                        <Link to={'/testmonial'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>Testmonial</li></Link>
-                        <Link to={'/contactme'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>ContactMe</li></Link>
-                    </ul>
-                </div>
-                <div className="col-auto d-lg-flex d-none">
-                    <button className={`py-2 px-3 rounded-5 ${style.button_color}`}>Resume</button>
-                </div>
-                <div className="col-auto mt-2 d-lg-none d-flex ms-auto dropdown">
-                    <button className={`py-2 px-3 rounded-2 dropdown-toggle ${style.button_color}`} data-bs-toggle="dropdown" ><i className="bi bi-list"></i></button>
-                    <ul className={`dropdown-menu ${style.dropdown_color}`}>
-                    <Link to={'/'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>Dasboard</li></Link>
-                        <Link to={'/aboutme'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>AboutMe</li></Link>
-                        <Link to={'/projects'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>Projects</li></Link>
-                        <Link to={'/experience'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>Experience</li></Link>
-                        <Link to={'/testmonial'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>Testmonial</li></Link>
-                        <Link to={'/contactme'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>ContactMe</li></Link>
-                    </ul>
-                </div>
-            </header>
-            <main className='row'>
-                <Outlet />
-            </main>
-        </section>
+            </section>
+
+            :
+
+            <section className={`container-fluid  ${style.container}`}>
+                <Header userData={userData}/>
+                <main className='row'>
+                    <Outlet context={{ userData }}/>
+                </main>
+            </section>
+        }
     </>
   )
 }

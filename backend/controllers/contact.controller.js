@@ -1,4 +1,5 @@
 /* call package */
+const nodeMailer = require('nodemailer');
 
 
 
@@ -132,7 +133,7 @@ const deleteInfo = async (req , res) => {
 const readInfoInFront = async (req , res) => {
     try {
         
-        const userId = process.env.USER_ID;
+        const userId = req.params.Id;
 
         const readInfo = await contactTable.find({userId : userId , profileEnable: true});
 
@@ -152,6 +153,52 @@ const readInfoInFront = async (req , res) => {
     }
 }
 
+const contactMail = async (req , res) => {
+    try {
+        
+        const { name , email, subject, bodyContent } = req.body;
+        
+        const transporter = nodeMailer.createTransport({
+            service: 'gmail', // You can change this to any email service
+            auth: {
+              user: 'usertestmail87@gmail.com', // Your email address
+              pass: 'otab astu nbuw xudu', // Your email password or app-specific password
+            },
+        });
+        
+        const mailOptions = {
+            from: email,   // Sender address
+            to: 'usertestmail87@gmail.com', // Receiver address
+            subject: subject,
+            text: `Name: ${name}\nEmail: ${email}\nMessage: ${bodyContent}`, // Email body (plain text)
+            html: `<p><strong>Name:</strong> ${name}</p><p><strong>Email:</strong> ${email}</p><p><strong>Message:</strong> ${bodyContent}</p>`, // HTML email body
+        };
+        
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return res.status(404).json({
+                    Result : false,
+                    Message : 'Send Failed!',
+                    data : error
+                });
+            } else {
+                return res.status(200).json({
+                    Result : true,
+                    Message : 'Sent SuccessFully!',
+                    data : info
+                });
+            }
+        });
+        
+    } catch (error) {
+        return res.status(404).json({
+            Result : false,
+            Message : 'Sends Failed!',
+            data : error
+        });
+    }
+}
+
 
 
 /* export functions */
@@ -160,7 +207,8 @@ module.exports = {
     readInfo,
     updateInfo,
     deleteInfo,
-    readInfoInFront
+    readInfoInFront,
+    contactMail
 }
 
 

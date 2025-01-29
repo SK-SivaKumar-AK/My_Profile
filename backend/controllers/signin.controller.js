@@ -210,6 +210,26 @@ const userLogout = (req , res) => {
     }
 }
 
+const userDataFront = async (req , res) => {
+    try {
+        
+        const userData = await userTable.find({userEnable : true});
+        return res.status(200).json({
+            Result : true,
+            Message : 'Read Successfully!',
+            data : userData
+        });
+
+    } catch (error) {
+        
+        return res.status(404).json({
+            Result : false,
+            Message : error.message
+        });
+
+    }
+};
+
 
 
 /* export functions */
@@ -218,7 +238,8 @@ module.exports = {
     userLogin,
     userData,
     userInfoUpdate,
-    userLogout
+    userLogout,
+    userDataFront
 }
 
 

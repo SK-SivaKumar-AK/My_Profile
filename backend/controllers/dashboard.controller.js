@@ -10,7 +10,6 @@
 const { dashboardTable } = require('../models/dashboard.model');
 
 
-
 /* Call another files functions and original functions */
 const addInfo = async (req , res) => {
     try {
@@ -128,9 +127,9 @@ const deleteInfo = async (req , res) => {
 const readInfoInFront = async (req , res) => {
     try {
         
-        const userId = process.env.USER_ID;
+        const userId = req.params.Id;
 
-        const readInfo = await dashboardTable.find({userId : userId , contentEnable: true});
+        const readInfo = await dashboardTable.find({userId: userId , contentEnable : true});
 
         return res.status(200).json({
             Result : true,

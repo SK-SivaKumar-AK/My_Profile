@@ -1,38 +1,66 @@
-import React from 'react'
+import React , { useEffect, useState } from 'react'
+import { useOutletContext  } from 'react-router-dom'
 import style from '../CSSFiles/Experience.module.css'
 
 const Experience = () => {
+
+  const { userData } = useOutletContext();
+  const [loading , setLoading] = useState(true);
+
+  const GETEXPERIENCEFRONT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readexperienceinfofront`;
+  const [experienceData , setExperienceData] = useState([]);
+
+  useEffect(() => {
+      const getExperienceDetails = async () => {
+          const response = await fetch(`${GETEXPERIENCEFRONT_URL}/${userData[0]._id}`);
+          const responded = await response.json();
+          if(responded.Result === true){
+            setExperienceData(responded.data);
+            setLoading(false);
+          }
+      }
+      getExperienceDetails();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+  } , []);
+
   return (
     <>
-        <div className="col-12 text-white mt-5">
-          <div className="row">
-            <div className="col">
-              <h3 className='ms-4 fs-1'><b>Experience</b></h3>
-            </div>
+        {
+          loading ?
+          <div className="row vh-100 d-flex justify-content-center align-items-center">
+              <div className="col-4">
+                  <h1 className="text-center">&nbsp;</h1>
+              </div>
           </div>
-        </div>
-        <div className="col text-white mt-5">
-          <div className="row ms-5 mt-4">
-            <div className="col-md-2 col-12">
-              <div className={`${style.year_button} px-3 py-2 d-flex align-items-center fs-3`}>2022</div>
+          :
+          <>
+            <div className="col-12 text-white mt-5">
+              <div className="row">
+                <div className="col">
+                  <h3 className='ms-4 fs-1'><b>Experience</b></h3>
+                </div>
+              </div>
             </div>
-            <div className="col-md-10 col-12">
-              <h3 className='fs-2 mt-2'>Senior Developer</h3>
-              <p className='fs-4'>Greypath,Trichy</p>
-              <p className='me-2 fs-5'>As a PHP Full Stack Developer,I am responsible for the end-to-end development of web applications, handling both the frontend and backend development, and ensuring that all elements work seamlessly together. My role encompasses a wide range of tasks, including coding, troubleshooting, deploying applications, and maintaining an efficient workflow between the client-side (frontend) and server-side (backend).</p>
+            <div className="col text-white mt-5">
+                {
+                  experienceData.map((item) => {
+                    return(
+                      <div className="row ms-5 mt-4" key={item._id}>
+                        <div className="col-md-2 col-12" >
+                          <div className={`${style.year_button} px-3 py-2 d-flex align-items-center fs-3`}>{item.year}</div>
+                        </div>
+                        <div className="col-md-10 col-12 mt-3 mt-md-0" >
+                          <h3 className='fs-2'>{item.roleName}</h3>
+                          <p className='fs-4'>{item.companyName},{item.companyLocation}</p>
+                          <p className='me-2 fs-5'>{item.roleDescription}</p>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
             </div>
-          </div>
-          <div className="row ms-5 mt-4">
-            <div className="col-md-2 col-12">
-              <div className={`${style.year_button} px-3 py-2 d-flex align-items-center fs-3`}>2022</div>
-            </div>
-            <div className="col-md-10 col-12">
-              <h3 className='fs-2 mt-2'>Senior Developer</h3>
-              <p className='fs-4'>Greypath,Trichy</p>
-              <p className='me-2 fs-5'>As a PHP Full Stack Developer,I am responsible for the end-to-end development of web applications, handling both the frontend and backend development, and ensuring that all elements work seamlessly together. My role encompasses a wide range of tasks, including coding, troubleshooting, deploying applications, and maintaining an efficient workflow between the client-side (frontend) and server-side (backend).</p>
-            </div>
-          </div>
-        </div>
+          </>
+        }
     </>
   )
 }
