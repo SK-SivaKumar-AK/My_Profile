@@ -22,7 +22,7 @@ const AdminMain = () => {
                 <Route path={'register'} element={<AdminRegisterPage/>} />
             </Route>    
             {/* <Route path={'register'} element={<AdminRegisterPage />}/> */}
-            <Route path={'/'} element={<AdminMainPage />}>
+            <Route path={'/d'} element={<AdminMainPage />}>
                 <Route index element={<Dashboard/>} />
                 <Route path={'dashboard'} element={<Dashboard/>} />
                 <Route path={'aboutme'} element={<AboutMe/>} />
