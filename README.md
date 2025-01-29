@@ -18,7 +18,7 @@ Packages Installed:
 mongodb atlas connection:
 username : sksivakumarak
 password : BshvGiuYPqKBm7Ur
-mongodb+srv://sksivakumarak:BshvGiuYPqKBm7Ur@myprofile.e5wg6.mongodb.net/?retryWrites=true&w=majority&appName=MyProfile
+mongodb+srv://sksivakumarak:BshvGiuYPqKBm7Ur@myprofile.e5wg6.mongodb.net/my_profile?retryWrites=true&w=majority&appName=MyProfile
 
 
 
