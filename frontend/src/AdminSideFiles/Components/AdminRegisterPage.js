@@ -41,7 +41,7 @@ const AdminRegisterPage = () => {
             toast.success( responded.Message, {
                 position : 'top-center',
                 onClose: () => {
-                    navigate('/admin/login');
+                    navigate('/admin/entry/login');
                 }
             });
         }else {
@@ -81,7 +81,7 @@ const AdminRegisterPage = () => {
                     </div>
                     <div className="mb-3 d-flex justify-content-between">
                         <button className="btn btn-primary" type="submit" onClick={(e) => handleSubmit(e)}>Register</button>
-                        <Link to={'/admin'} className='btn text-light text-decoration-underline'>Already Register</Link>
+                        <Link to={'/admin/entry/login'} className='btn text-light text-decoration-underline'>Already Register</Link>
                     </div>
                 </div>
 

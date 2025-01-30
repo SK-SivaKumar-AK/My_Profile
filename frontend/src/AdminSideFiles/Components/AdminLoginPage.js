@@ -29,7 +29,7 @@ const AdminLoginPage = () => {
         });
         const responded = await response.json();
         if(responded.Result === true){
-            navigate('/admin/dashboard');
+            navigate('/admin/entered/dashboard');
         }else{
             toast.error(responded.Message || 'Something went wrong! Please try again.', {
                 position: 'top-center'
@@ -55,7 +55,7 @@ const AdminLoginPage = () => {
                     </div>
                     <div className="mb-3 d-flex justify-content-between">
                         <button className="btn btn-primary" type="submit" onClick={(e) => handleSubmit(e)}>LogIn</button>
-                        <Link to={'/admin/register'} className='btn text-light text-decoration-underline'>Account Create</Link>
+                        <Link to={'/admin/entry/register'} className='btn text-light text-decoration-underline'>Account Create</Link>
                     </div>
                 </div>
 

@@ -56,12 +56,12 @@ const AdminMainPage = () => {
     
                     <div className="col-3 d-md-flex d-none bg-dark-subtle vh-100 position-fixed">
                         <ul className="list-unstyled ms-2 text-dark">
-                            <Link to={'/admin/dashboard'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-front"></i><span className="ms-3">Dashboard</span></li></Link>
-                            <Link to={'/admin/aboutme'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-file-person"></i><span className="ms-3">About Me</span></li></Link>
-                            <Link to={'/admin/projects'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-pc-display"></i><span className="ms-3">Projects</span></li></Link>
-                            <Link to={'/admin/experience'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-building-check"></i><span className="ms-3">Experience</span></li></Link>
-                            <Link to={'/admin/testmonial'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-award"></i><span className="ms-3">Testmonial</span></li></Link>
-                            <Link to={'/admin/contactme'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-person-lines-fill"></i><span className="ms-3">Contact Me</span></li></Link>
+                            <Link to={'/admin/entered/dashboard'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-front"></i><span className="ms-3">Dashboard</span></li></Link>
+                            <Link to={'/admin/entered/aboutme'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-file-person"></i><span className="ms-3">About Me</span></li></Link>
+                            <Link to={'/admin/entered/projects'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-pc-display"></i><span className="ms-3">Projects</span></li></Link>
+                            <Link to={'/admin/entered/experience'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-building-check"></i><span className="ms-3">Experience</span></li></Link>
+                            <Link to={'/admin/entered/testmonial'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-award"></i><span className="ms-3">Testmonial</span></li></Link>
+                            <Link to={'/admin/entered/contactme'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-person-lines-fill"></i><span className="ms-3">Contact Me</span></li></Link>
                         </ul>
                     </div>
                     <div className="col-12 col-md-9 text-bg-light vh-100 ms-auto">

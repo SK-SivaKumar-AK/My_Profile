@@ -66,7 +66,7 @@ const Header = ({userData , render , setRender}) => {
         });
         const responded = await response.json();
         if(responded.Result === true){
-            navigate('/admin/login');
+            navigate('/admin/entry/login');
         }
     }
 
@@ -77,12 +77,12 @@ const Header = ({userData , render , setRender}) => {
                 <div className="col-1 d-flex d-md-none align-items-center dropdown">
                     <button className="btn btn-lg btn-secondary  dropdown-toggle" data-bs-toggle="dropdown" ><i className="bi bi-list"></i></button>
                     <ul className="dropdown-menu">
-                        <Link to={'/admin/dashboard'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-front"></i><span className="ms-3">Dashboard</span></li></Link>
-                        <Link to={'/admin/aboutme'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-file-person"></i><span className="ms-3">About Me</span></li></Link>
-                        <Link to={'/admin/projects'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-pc-display"></i><span className="ms-3">Projects</span></li></Link>
-                        <Link to={'/admin/experience'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-building-check"></i><span className="ms-3">Experience</span></li></Link>
-                        <Link to={'/admin/testmonial'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-award"></i><span className="ms-3">Testmonial</span></li></Link>
-                        <Link to={'/admin/contactme'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-person-lines-fill"></i><span className="ms-3">Contact Me</span></li></Link>
+                        <Link to={'/admin/entered/dashboard'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-front"></i><span className="ms-3">Dashboard</span></li></Link>
+                        <Link to={'/admin/entered/aboutme'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-file-person"></i><span className="ms-3">About Me</span></li></Link>
+                        <Link to={'/admin/entered/projects'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-pc-display"></i><span className="ms-3">Projects</span></li></Link>
+                        <Link to={'/admin/entered/experience'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-building-check"></i><span className="ms-3">Experience</span></li></Link>
+                        <Link to={'/admin/entered/testmonial'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-award"></i><span className="ms-3">Testmonial</span></li></Link>
+                        <Link to={'/admin/entered/contactme'} className="text-black text-decoration-none"><li className="dropdown-item"><i className="bi bi-person-lines-fill"></i><span className="ms-3">Contact Me</span></li></Link>
                     </ul>
                 </div>
                 <div className="col-9 d-md-flex d-none align-items-center">

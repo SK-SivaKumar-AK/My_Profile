@@ -16,13 +16,13 @@ const AdminMain = () => {
   return (
     <>
         <Routes>
-            <Route path={'/'} element={<AdminEntryPage />}>
+            <Route path={'/entry'} element={<AdminEntryPage />}>
                 <Route index element={<AdminLoginPage/>} />
                 <Route path={'login'} element={<AdminLoginPage/>} />
                 <Route path={'register'} element={<AdminRegisterPage/>} />
             </Route>    
             {/* <Route path={'register'} element={<AdminRegisterPage />}/> */}
-            <Route path={'/'} element={<AdminMainPage />}>
+            <Route path={'/entered'} element={<AdminMainPage />}>
                 <Route index element={<Dashboard/>} />
                 <Route path={'dashboard'} element={<Dashboard/>} />
                 <Route path={'aboutme'} element={<AboutMe/>} />
