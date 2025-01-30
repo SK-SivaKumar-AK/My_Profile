@@ -18,7 +18,8 @@ dotEnv.config({
 
 /* Call another files functions and original functions */
 const connectDatabase = () => {
-    mongoose.connect(process.env.DB_URL).then((connect) => {
+    const dbUrl = (process.env.NODE_ENV === 'Production') ? process.env.PRODUCTION_DB_URL : process.env.DEVELOPMENT_DB_URL;
+    mongoose.connect(dbUrl).then((connect) => {
         console.log(`Database is connected in ${connect.connection.host}`);
     }).catch((error) => {
         console.log(error.message);

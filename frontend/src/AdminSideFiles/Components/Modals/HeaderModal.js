@@ -34,7 +34,7 @@ const HeaderModal = ({userData , inputUpdateData , handleReset , handleUpdateCha
                         </div>
                         <div className="form-check form-switch mt-3">
                             <input className="form-check-input" type="checkbox" role="switch" id="updateUserEnable" name="userEnable" checked={inputUpdateData.userEnable}  onChange={ (e) => handleUpdateChange(e)}/>
-                            <label className="form-check-label" htmlFor="updateUserEnable">Enable the User In Portfolio</label>
+                            <label className="form-check-label text-dark" htmlFor="updateUserEnable">Enable the User In Portfolio</label>
                         </div>
                         
                         <hr />

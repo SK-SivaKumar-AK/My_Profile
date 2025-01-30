@@ -27,10 +27,11 @@ const Header = ({userData , render , setRender}) => {
 
 
     const handleUpdateChange = (e) => {
-        e.preventDefault();
-        const { name , value , type , files } = e.target;
+        const { name , value , type , files, checked } = e.target;
         if(type === 'file'){
             setInputUpdateData({ ...inputUpdateData , [name] : files[0] });
+        }else if(type === 'checkbox'){
+            setInputUpdateData({ ...inputUpdateData , [name] : checked });
         }else{
             setInputUpdateData({ ...inputUpdateData , [name] : value });
         }

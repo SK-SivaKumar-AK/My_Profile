@@ -24,7 +24,6 @@ app.use(cors({
     credentials: true,                // Allow cookies to be sent
   }));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
-app.use(express.static(path.join(__dirname, 'build')));
 
 
 
@@ -41,12 +40,21 @@ const { contactRouter } = require('./routes/contact.route');
 app.get('/test', (req, res) => {
     res.send('This is the backend home route!!');
 });
+
+
+
+/* Frontend route section */
+const staticAccess = (process.env.NODE_ENV === 'Production') ? path.join(__dirname, 'build') : path.join(__dirname, '../frontend/build');
+app.use(express.static(staticAccess));
+
+const executePath = (process.env.NODE_ENV === 'Production') ? path.join(__dirname, 'build' , 'index.html') : path.join(__dirname, '../frontend/build' , 'index.html');
 app.get(/^\/(aboutme|projects(?:\/[\w-]+)?|experience|testmonial|contactme)$/i, (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(executePath);
 });
 app.get(/^\/admin\/entry\/(login|register|)|\/admin\/entered\/(dashboard|aboutme|projects|experience|testmonial|contactme)$/i, (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(executePath);
 });
+
 
 
 /* Call another files functions*/
