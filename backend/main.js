@@ -24,6 +24,7 @@ app.use(cors({
     credentials: true,                // Allow cookies to be sent
   }));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 
 
@@ -36,8 +37,15 @@ const { projectRouter } = require('./routes/project.route');
 const { experienceRouter } = require('./routes/experience.route');
 const { testmonialRouter } = require('./routes/testmonial.route');
 const { contactRouter } = require('./routes/contact.route');
-app.get('/', (req, res) => {
+
+app.get('/test', (req, res) => {
     res.send('This is the backend home route!!');
+});
+app.get(/^\/(aboutme|projects(?:\/[\w-]+)?|experience|testmonial|contactme)$/i, (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+app.get(/^\/admin\/entry\/(login|register|)|\/admin\/entered\/(dashboard|aboutme|projects|experience|testmonial|contactme)$/i, (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 
