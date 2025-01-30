@@ -43,20 +43,6 @@ app.get('/test', (req, res) => {
 
 
 
-/* Frontend route section */
-const staticAccess = (process.env.NODE_ENV === 'Production') ? path.join(__dirname, 'build') : path.join(__dirname, '../frontend/build');
-app.use(express.static(staticAccess));
-
-const executePath = (process.env.NODE_ENV === 'Production') ? path.join(__dirname, 'build' , 'index.html') : path.join(__dirname, '../frontend/build' , 'index.html');
-app.get(/^\/(aboutme|projects(?:\/[\w-]+)?|experience|testmonial|contactme)$/i, (req, res) => {
-    res.sendFile(executePath);
-});
-app.get(/^\/admin\/entry\/(login|register|)|\/admin\/entered\/(dashboard|aboutme|projects|experience|testmonial|contactme)$/i, (req, res) => {
-    res.sendFile(executePath);
-});
-
-
-
 /* Call another files functions*/
 connectDatabase();
 app.use('/api/v1/' , signinRouter);
