@@ -82,7 +82,7 @@ const userLogin = async (req , res) => {
             }
         );
         res.cookie('accessToken' , accessToken , {
-            secure : true,
+            secure : false,
             maxAge : 60 * 60 * 1000,
             httpOnly: true
         });
@@ -97,7 +97,7 @@ const userLogin = async (req , res) => {
             }
         );
         res.cookie('refreshToken' , refreshToken , {
-            secure : true,
+            secure : false,
             maxAge : 120 * 60 * 1000,
             httpOnly: true
         });
@@ -183,11 +183,11 @@ const userLogout = (req , res) => {
     try {
 
         res.clearCookie('accessToken', { 
-            secure: true, 
+            secure: false, 
             httpOnly: true, 
         });
         res.clearCookie('refreshToken', { 
-            secure: true, 
+            secure: false, 
             httpOnly: true,
         });
         return res.status(200).json({
