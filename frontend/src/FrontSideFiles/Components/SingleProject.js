@@ -39,7 +39,7 @@ const SingleProject = () => {
                 <div className="row">
                     <div className="col">
                         <h3 className='ms-4 fs-1 text-center text-sm-start'><b>{singleprojectData[0].projectName}</b></h3>
-                        <img className='ms-5 mt-2' src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${singleprojectData[0].projectImage}`} alt="skillImage" width={'250px'} height={'250px'}/>
+                        <img className='ms-5 mt-2' src={`${process.env.REACT_APP_BASE_URL}/assets/uploads/images/${singleprojectData[0].projectImage}`} alt="skillImage" width={'250px'} height={'250px'}/>
                         <p className='px-5 mt-4 fs-5'>{singleprojectData[0].projectDescription}</p>
                     </div>
                 </div>
