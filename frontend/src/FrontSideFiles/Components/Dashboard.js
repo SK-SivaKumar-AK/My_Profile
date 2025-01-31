@@ -44,7 +44,7 @@ const Dashboard = () => {
             <div className="col-lg-6 col-12 mt-2">
                 <img src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${dashboardData[0].userImage}`} alt="userImage" width='100%' height='100%'/>
             </div>
-            <div className="col-lg-auto col-12 text-white d-flex flex-lg-column justify-content-lg-end justify-content-between">
+            <div className="col-lg-auto col-12 text-white d-flex flex-lg-column justify-content-lg-end justify-content-between mt-5">
                 <a href="void()" className='text-white'><i className="bi bi-instagram mt-2 fs-3"></i></a>
                 <a href="void()" className='text-white'><i className="bi bi-whatsapp mt-2 fs-3"></i></a>
                 <a href="void()" className='text-white'><i className="bi bi-linkedin mt-2 fs-3"></i></a>
