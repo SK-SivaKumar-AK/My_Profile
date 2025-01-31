@@ -8,18 +8,18 @@ const Project = () => {
   const [render , setRender] = useState(false);
   const modalRef = useRef(null);
 
-  const READPROJECT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readprojectinfo`;
+  const READPROJECT_URL = `${process.env.REACT_APP_BASE_URL}/readprojectinfo`;
   const [projectData , setProjectData] = useState([]);
 
-  const ADDPROJECT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/addprojectinfo`;
+  const ADDPROJECT_URL = `${process.env.REACT_APP_BASE_URL}/addprojectinfo`;
   const [inputAddData , setInputAddData] = useState({projectName : '' , projectDescription : '' , projectEnable : false});
   const fileAddRef = useRef(null);
 
-  const UPDATEPROJECT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/updateprojectinfo`;
+  const UPDATEPROJECT_URL = `${process.env.REACT_APP_BASE_URL}/updateprojectinfo`;
   const [inputUpdateData , setInputUpdateData] = useState({_id : '' , projectName : '' , projectDescription : '' , projectEnable : false});
   const fileUpdateRef = useRef(null);
 
-  const DELETEPROJECT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/deleteprojectinfo`;
+  const DELETEPROJECT_URL = `${process.env.REACT_APP_BASE_URL}/deleteprojectinfo`;
 
   useEffect(() => {
     const getProjectData = async () => {

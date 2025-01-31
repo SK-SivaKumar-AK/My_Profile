@@ -23,7 +23,7 @@ const AboutMeTable = ({aboutData , handleModalData , handleDelete}) => {
                         <tr key={item._id}>
                         <td className='text-center'>{index + 1}</td>
                         <td>{item.skillName}</td>
-                        <td className='text-center'><img src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${item.skillImage}`} alt={item.skillImage} width={'50px'} height={'50px'} /></td>
+                        <td className='text-center'><img src={`${process.env.REACT_APP_BASE_URL}/assets/uploads/images/${item.skillImage}`} alt={item.skillImage} width={'50px'} height={'50px'} /></td>
                         <td className='text-center'><button type="button" className="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#updateModal" onClick={() => handleModalData(index)}>Edit</button></td>
                         <td className='text-center'><button type="button" className="btn btn-danger" onClick={ () => handleDelete(item._id)}>Delete</button></td>
                         </tr>

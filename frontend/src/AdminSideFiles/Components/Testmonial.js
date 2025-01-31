@@ -8,16 +8,16 @@ const Testmonial = () => {
   const [render , setRender] = useState(false);
   const modalRef = useRef(null);
 
-  const READTESTMONIAL_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readtestmonialinfo`;
+  const READTESTMONIAL_URL = `${process.env.REACT_APP_BASE_URL}/readtestmonialinfo`;
   const [testmonialData , setTestmonialData] = useState([]);
 
-  const ADDTESTMONIAL_URL = `${process.env.REACT_APP_BASE_URL}api/v1/addtestmonialinfo`;
+  const ADDTESTMONIAL_URL = `${process.env.REACT_APP_BASE_URL}/addtestmonialinfo`;
   const [inputAddData , setInputAddData] = useState({subject : '' , personName : '' , personRole : '' , testmonialEnable : false});
   
-  const UPDATETESTMONIAL_URL = `${process.env.REACT_APP_BASE_URL}api/v1/updatetestmonialinfo`;
+  const UPDATETESTMONIAL_URL = `${process.env.REACT_APP_BASE_URL}/updatetestmonialinfo`;
   const [inputUpdateData , setInputUpdateData] = useState({_id : '' , subject : '' , personName : '' , personRole : '' , testmonialEnable : false});
     
-  const DELETETESTMONIAL_URL = `${process.env.REACT_APP_BASE_URL}api/v1/deletetestmonialinfo`;
+  const DELETETESTMONIAL_URL = `${process.env.REACT_APP_BASE_URL}/deletetestmonialinfo`;
 
 
   useEffect(() => {

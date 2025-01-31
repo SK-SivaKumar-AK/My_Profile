@@ -8,7 +8,7 @@ const Header = ({userData}) => {
     <>
         <header className={`row p-3 d-flex align-items-center sticky-top`}>
             <div className="col-4 text-center">
-                <img src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${userData[0].userProfileImage}`} alt="logo" width={'70px'} height={'70px'}/>
+                <img src={`${process.env.REACT_APP_BASE_URL}/assets/uploads/images/${userData[0].userProfileImage}`} alt="logo" width={'70px'} height={'70px'}/>
             </div>
             <div className="col-6 d-lg-flex d-none justify-content-end">
                 <ul className='list-unstyled d-flex'>
@@ -21,7 +21,7 @@ const Header = ({userData}) => {
                 </ul>
             </div>
             <div className="col-auto d-lg-flex d-none">
-                <a href={`${process.env.REACT_APP_BASE_URL}assets/uploads/resumes/${userData[0].userResume}`} target='_blank' rel="noreferrer">
+                <a href={`${process.env.REACT_APP_BASE_URL}/assets/uploads/resumes/${userData[0].userResume}`} target='_blank' rel="noreferrer">
                     <button className={`py-2 px-3 rounded-5 ${style.button_color}`}>Resume</button>
                 </a>
             </div>

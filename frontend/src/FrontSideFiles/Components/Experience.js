@@ -7,7 +7,7 @@ const Experience = () => {
   const { userData } = useOutletContext();
   const [loading , setLoading] = useState(true);
 
-  const GETEXPERIENCEFRONT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readexperienceinfofront`;
+  const GETEXPERIENCEFRONT_URL = `${process.env.REACT_APP_BASE_URL}/readexperienceinfofront`;
   const [experienceData , setExperienceData] = useState([]);
 
   useEffect(() => {

@@ -6,7 +6,7 @@ const AdminLoginPage = () => {
 
     const navigate = useNavigate();
 
-    const LOGIN_URL = `${process.env.REACT_APP_BASE_URL}api/v1/login`;
+    const LOGIN_URL = `${process.env.REACT_APP_BASE_URL}/login`;
     const [inputData , setInputData] = useState({userEmail : '' , userPassword : ''});
     
 

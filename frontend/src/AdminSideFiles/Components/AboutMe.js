@@ -8,18 +8,18 @@ const AboutMe = () => {
   const [render , setRender] = useState(false);
   const modalRef = useRef(null);
 
-  const READABOUT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readaboutinfo`;
+  const READABOUT_URL = `${process.env.REACT_APP_BASE_URL}/readaboutinfo`;
   const [aboutData , setAboutData] = useState([]);
 
-  const ADDABOUT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/addaboutinfo`;
+  const ADDABOUT_URL = `${process.env.REACT_APP_BASE_URL}/addaboutinfo`;
   const [inputAddData , setinputAddData] = useState({skillName : '' , skillEnable : false});
   const fileAddRef = useRef(null);
 
-  const UPDATEABOUT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/updateaboutinfo`;
+  const UPDATEABOUT_URL = `${process.env.REACT_APP_BASE_URL}/updateaboutinfo`;
   const [inputUpdateData , setinputUpdateData] = useState({_id : '' , skillName : '' , skillEnable : false});
   const fileUpdateRef = useRef(null);
 
-  const DELETEABOUT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/deleteaboutinfo`;
+  const DELETEABOUT_URL = `${process.env.REACT_APP_BASE_URL}/deleteaboutinfo`;
 
 
   useEffect(()=>{

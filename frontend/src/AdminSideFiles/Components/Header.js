@@ -8,11 +8,11 @@ const Header = ({userData , render , setRender}) => {
     const navigate = useNavigate();
     const modalRef = useRef(null);
 
-    const UPDATEUSER_URL = `${process.env.REACT_APP_BASE_URL}api/v1/userinfoupdate`;
+    const UPDATEUSER_URL = `${process.env.REACT_APP_BASE_URL}/userinfoupdate`;
     const [inputUpdateData , setInputUpdateData] = useState({_id : '' , userName : '' , userEmail : '' , userPassword : '' , userEnable : false});
     const fileUpdateRef = useRef(null);
 
-    const LOGOUT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/logout`;
+    const LOGOUT_URL = `${process.env.REACT_APP_BASE_URL}/logout`;
 
 
     const handleModalData = (index) => {
@@ -90,7 +90,7 @@ const Header = ({userData , render , setRender}) => {
                     <h5>{userData[0].userName}</h5>
                 </div>
                 <div className="col-auto ms-auto dropdown">
-                    <img src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${userData[0].userProfileImage}`} alt={userData[0].userProfileImage} className="dropdown-toggle rounded-circle" data-bs-toggle="dropdown" width={'50px'} height={'50px'}/>
+                    <img src={`${process.env.REACT_APP_BASE_URL}/assets/uploads/images/${userData[0].userProfileImage}`} alt={userData[0].userProfileImage} className="dropdown-toggle rounded-circle" data-bs-toggle="dropdown" width={'50px'} height={'50px'}/>
                     <ul className="dropdown-menu">
                         <li><button className="dropdown-item" onClick={(e) => {handleLogout(e)}}>LogOut</button></li>
                         <li><button className="dropdown-item" data-bs-toggle="modal" data-bs-target="#userUpdateModal" onClick={() => handleModalData(0)}>Update Profile</button></li>

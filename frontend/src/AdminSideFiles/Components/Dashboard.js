@@ -9,19 +9,19 @@ const Dashboard = () => {
   const modalRef = useRef(null);
   
 
-  const READDASHBOARD_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readdashboardinfo`;
+  const READDASHBOARD_URL = `${process.env.REACT_APP_BASE_URL}/readdashboardinfo`;
   const [dashboardData , setDashboardData] = useState([]);
 
-  const ADDDASHBOARD_URL = `${process.env.REACT_APP_BASE_URL}api/v1/adddashboardinfo`;
+  const ADDDASHBOARD_URL = `${process.env.REACT_APP_BASE_URL}/adddashboardinfo`;
   const [inputAddData , setinputAddData] = useState({mainContent : '' , subContent : '' , contentEnable : false});
   const fileAddRef = useRef(null);
   
-  const UPDATEDASHBOARD_URL = `${process.env.REACT_APP_BASE_URL}api/v1/updatedashboardinfo`;
+  const UPDATEDASHBOARD_URL = `${process.env.REACT_APP_BASE_URL}/updatedashboardinfo`;
   const [inputUpdateData , setinputUpdateData] = useState({_id : '' , mainContent : '' , subContent : '' , contentEnable : false});
   const fileUpdateRef = useRef(null);
   
 
-  const DELETEDASHBOARD_URL = `${process.env.REACT_APP_BASE_URL}api/v1/deletedashboardinfo`;
+  const DELETEDASHBOARD_URL = `${process.env.REACT_APP_BASE_URL}/deletedashboardinfo`;
 
   
 

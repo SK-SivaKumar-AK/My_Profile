@@ -8,16 +8,16 @@ const ContactMe = () => {
   const [render , setRender] = useState(false);
   const modalRef = useRef(null);
 
-  const READCONTACT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readcontactinfo`;
+  const READCONTACT_URL = `${process.env.REACT_APP_BASE_URL}/readcontactinfo`;
   const [contactData , setContactData] = useState([]);
   
-  const ADDCONTACT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/addcontactinfo`;
+  const ADDCONTACT_URL = `${process.env.REACT_APP_BASE_URL}/addcontactinfo`;
   const [inputAddData , setInputAddData] = useState({streetName : '' , areaName : '' , cityName : '' , stateName : '' , countryName : '' , pincode : '' , phoneNumber : '' , profileEnable : false});
     
-  const UPDATECONTACT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/updatecontactinfo`;
+  const UPDATECONTACT_URL = `${process.env.REACT_APP_BASE_URL}/updatecontactinfo`;
   const [inputUpdateData , setInputUpdateData] = useState({_id : '' , streetName : '' , areaName : '' , cityName : '' , stateName : '' , countryName : '' , pincode : '' , phoneNumber : '' , profileEnable : false});
    
-  const DELETECONTACT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/deletecontactinfo`;
+  const DELETECONTACT_URL = `${process.env.REACT_APP_BASE_URL}/deletecontactinfo`;
 
 
   useEffect(() => {

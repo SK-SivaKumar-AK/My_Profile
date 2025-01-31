@@ -8,10 +8,10 @@ const ContactMe = () => {
   const { userData } = useOutletContext();
   const [loading , setLoading] = useState(true);
 
-  const GETCONTACTFRONT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readcontactinfofront`;
+  const GETCONTACTFRONT_URL = `${process.env.REACT_APP_BASE_URL}/readcontactinfofront`;
   const [contactData , setContactData] = useState([]);
 
-  const SENTEMAIL_URL = `${process.env.REACT_APP_BASE_URL}api/v1/contactmail`;
+  const SENTEMAIL_URL = `${process.env.REACT_APP_BASE_URL}/contactmail`;
   const [sendData , setSendData] = useState({name : '' , email : '' , subject : '' , bodyContent : ''});
 
   useEffect(() => {

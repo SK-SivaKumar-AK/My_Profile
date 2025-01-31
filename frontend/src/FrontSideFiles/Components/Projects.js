@@ -7,7 +7,7 @@ const Projects = () => {
     const { userData } = useOutletContext();
     const [loading , setLoading] = useState(true);
 
-    const GETPROJECTFRONT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readprojectinfofront`;
+    const GETPROJECTFRONT_URL = `${process.env.REACT_APP_BASE_URL}/readprojectinfofront`;
     const [projectData , setProjectData] = useState([]);
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const Projects = () => {
                             return(
                                 <Link to={`/projects/${item._id}`} className="col-lg-3 col-md-6 col-12 mt-4 text-decoration-none" key={item._id}>
                                     <div className={`border rounded-3 p-2 text-center ${style.project_div}`}>
-                                        <img className='mt-2' src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${item.projectImage}`} alt="skillImage" width={'200px'} height={'200px'}/>
+                                        <img className='mt-2' src={`${process.env.REACT_APP_BASE_URL}/assets/uploads/images/${item.projectImage}`} alt="skillImage" width={'200px'} height={'200px'}/>
                                         <h4 className='text-white mt-3'>{item.projectName}</h4>
                                     </div>
                                 </Link>

@@ -3,7 +3,7 @@ import { useNavigate , Outlet } from 'react-router-dom'
 
 const AdminEntryPage = () => {
 
-    const GETUSER_URL = `${process.env.REACT_APP_BASE_URL}api/v1/getuser`;
+    const GETUSER_URL = `${process.env.REACT_APP_BASE_URL}/getuser`;
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const AdminEntryPage = () => {
             const responded = await response.json();
             
             if(responded.Result === true){
-                navigate('/admin/dashboard');
+                navigate('/admin/entered/dashboard');
             }
             setLoading(false);
         }

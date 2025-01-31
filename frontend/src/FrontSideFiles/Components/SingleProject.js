@@ -6,7 +6,7 @@ const SingleProject = () => {
     const { id } = useParams();
     const [loading , setLoading] = useState(true);
     
-    const GETSINGLEPROJECTFRONT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readsingleprojectinfofront`;
+    const GETSINGLEPROJECTFRONT_URL = `${process.env.REACT_APP_BASE_URL}/readsingleprojectinfofront`;
     const [singleprojectData , setSingleProjectData] = useState([]);
 
     useEffect(() => {

@@ -6,7 +6,7 @@ const AdminRegisterPage = () => {
 
     const navigate = useNavigate();
 
-    const SIGNIN_URL = `${process.env.REACT_APP_BASE_URL}api/v1/signin`;
+    const SIGNIN_URL = `${process.env.REACT_APP_BASE_URL}/signin`;
     const [inputData , setInputData] = useState({userName : '' , userEmail : '' , userPassword : ''});
     const fileInputRef = useRef(null);
     

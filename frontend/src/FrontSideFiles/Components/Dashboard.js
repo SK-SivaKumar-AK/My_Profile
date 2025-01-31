@@ -7,7 +7,7 @@ const Dashboard = () => {
   const { userData } = useOutletContext();
   const [loading , setLoading] = useState(true);
 
-  const GETDASHBOARDFRONT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readdashboardinfofront`;
+  const GETDASHBOARDFRONT_URL = `${process.env.REACT_APP_BASE_URL}/readdashboardinfofront`;
   const [dashboardData , setDashboardData] = useState([]);
   
   useEffect(() => {
@@ -50,7 +50,7 @@ const Dashboard = () => {
               <p className="fs-4">{dashboardData[0].subContent}</p>
             </div>
             <div className="col-lg-6 col-12 mt-2">
-                <img className={`${style.fade_image}`} src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${dashboardData[0].userImage}`} alt="userImage" width='100%' height='100%'/>
+                <img className={`${style.fade_image}`} src={`${process.env.REACT_APP_BASE_URL}/assets/uploads/images/${dashboardData[0].userImage}`} alt="userImage" width='100%' height='100%'/>
             </div>
             <div className="col-lg-auto col-12 text-white d-flex flex-lg-column justify-content-lg-end justify-content-between mt-5">
                 <a href="void()" className='text-white'><i className="bi bi-instagram mt-2 fs-3"></i></a>

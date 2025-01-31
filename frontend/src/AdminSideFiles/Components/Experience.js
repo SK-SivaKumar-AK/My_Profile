@@ -8,16 +8,16 @@ const Experience = () => {
   const [render , setRender] = useState(false);
   const modalRef = useRef(null);
 
-  const READEXPERIENCE_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readexperienceinfo`;
+  const READEXPERIENCE_URL = `${process.env.REACT_APP_BASE_URL}/readexperienceinfo`;
   const [experienceData , setExperienceData] = useState([]);
 
-  const ADDEXPERIENCE_URL = `${process.env.REACT_APP_BASE_URL}api/v1/addexperienceinfo`;
+  const ADDEXPERIENCE_URL = `${process.env.REACT_APP_BASE_URL}/addexperienceinfo`;
   const [inputAddData , setInputAddData] = useState({roleName : '' , roleDescription : '' , year : '' , companyName : '' , companyLocation : '' , experienceEnable : ''});
 
-  const UPDATEEXPERIENCE_URL = `${process.env.REACT_APP_BASE_URL}api/v1/updateexperienceinfo`;
+  const UPDATEEXPERIENCE_URL = `${process.env.REACT_APP_BASE_URL}/updateexperienceinfo`;
   const [inputUpdateData , setInputUpdateData] = useState({_id : '' , roleName : '' , roleDescription : '' , year : '' , companyName : '' , companyLocation : '' , experienceEnable : ''});
     
-  const DELETEEXPERIENCE_URL = `${process.env.REACT_APP_BASE_URL}api/v1/deleteexperienceinfo`;
+  const DELETEEXPERIENCE_URL = `${process.env.REACT_APP_BASE_URL}/deleteexperienceinfo`;
 
 
   useEffect(() => {

@@ -82,9 +82,10 @@ const userLogin = async (req , res) => {
             }
         );
         res.cookie('accessToken' , accessToken , {
-            secure : false,
+            secure : process.env.NODE_ENV === 'Development' ? true : false,
             maxAge : 60 * 60 * 1000,
-            httpOnly: true
+            httpOnly: true,
+            sameSite: process.env.NODE_ENV === 'Development' ? 'None' : 'Strict'
         });
 
         const refreshToken = await jwt.sign(
@@ -97,9 +98,10 @@ const userLogin = async (req , res) => {
             }
         );
         res.cookie('refreshToken' , refreshToken , {
-            secure : false,
+            secure : process.env.NODE_ENV === 'Development' ? true : false,
             maxAge : 120 * 60 * 1000,
-            httpOnly: true
+            httpOnly: true,
+            sameSite: process.env.NODE_ENV === 'Development' ? 'None' : 'Strict'
         });
         
 
@@ -183,12 +185,14 @@ const userLogout = (req , res) => {
     try {
 
         res.clearCookie('accessToken', { 
-            secure: false, 
+            secure: process.env.NODE_ENV === 'Development' ? true : false,
             httpOnly: true, 
+            sameSite: process.env.NODE_ENV === 'Development' ? 'None' : 'Strict'
         });
         res.clearCookie('refreshToken', { 
-            secure: false, 
+            secure: process.env.NODE_ENV === 'Development' ? true : false,
             httpOnly: true,
+            sameSite: process.env.NODE_ENV === 'Development' ? 'None' : 'Strict'
         });
         return res.status(200).json({
             Result : true,

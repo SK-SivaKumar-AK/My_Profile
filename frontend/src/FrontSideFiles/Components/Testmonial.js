@@ -7,7 +7,7 @@ const Testmonial = () => {
   const { userData } = useOutletContext();
   const [loading , setLoading] = useState(true);
 
-  const GETTESTMONIALFRONT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/readtestmonialinfofront`;
+  const GETTESTMONIALFRONT_URL = `${process.env.REACT_APP_BASE_URL}/readtestmonialinfofront`;
   const [testmonialData , setTestmonialData] = useState([]);
 
   useEffect(() => {

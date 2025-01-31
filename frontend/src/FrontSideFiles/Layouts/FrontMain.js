@@ -14,7 +14,7 @@ const FrontMain = () => {
 
   const [loading , setLoading] = useState(true);
 
-  const GETUSERFRONT_URL = `${process.env.REACT_APP_BASE_URL}api/v1/getuserfront`;
+  const GETUSERFRONT_URL = `${process.env.REACT_APP_BASE_URL}/getuserfront`;
   const [userData , setUserData] = useState([]);
   
 

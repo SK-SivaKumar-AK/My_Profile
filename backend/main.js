@@ -44,21 +44,20 @@ const { experienceRouter } = require('./routes/experience.route');
 const { testmonialRouter } = require('./routes/testmonial.route');
 const { contactRouter } = require('./routes/contact.route');
 
-app.get('/test', (req, res) => {
-    res.send('This is the backend home route!!');
-});
-
 
 
 /* Call another files functions*/
 connectDatabase();
-app.use('/api/v1/' , signinRouter);
-app.use('/api/v1/' , dashboardRouter);
-app.use('/api/v1/' , aboutRouter);
-app.use('/api/v1/' , projectRouter);
-app.use('/api/v1/' , experienceRouter);
-app.use('/api/v1/' , testmonialRouter);
-app.use('/api/v1/' , contactRouter);
+app.use('/' , signinRouter);
+app.use('/' , dashboardRouter);
+app.use('/' , aboutRouter);
+app.use('/' , projectRouter);
+app.use('/' , experienceRouter);
+app.use('/' , testmonialRouter);
+app.use('/' , contactRouter);
+app.get('/test', (req, res) => {
+  res.send('This is the backend home route!!');
+});
 
 
 

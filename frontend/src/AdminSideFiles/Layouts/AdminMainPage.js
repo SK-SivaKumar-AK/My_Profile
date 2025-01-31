@@ -10,7 +10,7 @@ const AdminMainPage = () => {
     const navigate = useNavigate();
     
 
-    const GETUSER_URL = `${process.env.REACT_APP_BASE_URL}api/v1/getuser`;
+    const GETUSER_URL = `${process.env.REACT_APP_BASE_URL}/getuser`;
     const [userData , setUserData] = useState({});
 
     useEffect(() => {
