@@ -27,7 +27,7 @@ const AboutMe = () => {
     <>
         {
             loading ?
-            <div className="row vh-100 d-flex justify-content-center align-items-center">
+            <div className="row d-flex justify-content-center align-items-center">
                 <div className="col-4">
                     <h1 className="text-center">&nbsp;</h1>
                 </div>
@@ -56,7 +56,7 @@ const AboutMe = () => {
                                 return(
                                     <div className="col-lg-3 col-md-6 col-12 mt-4" key={item._id}>
                                         <div className={`border rounded-3 p-2 text-center ${style.skill_color}`}>
-                                            <img className='mt-2' src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${item.skillImage}`} alt="skillImage" width={'100px'} height={'100px'}/>
+                                            <img className={`mt-2 ${style.fade_image}`} src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${item.skillImage}`} alt="skillImage" width={'100px'} height={'100px'}/>
                                             <h4 className='mt-3'>{item.skillName}</h4>
                                         </div>
                                     </div>    

@@ -9,3 +9,33 @@
 .button_color:hover{
     background-color: yellow;
 }
+
+.letter {
+    display: inline-block;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+  
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
+
+.fade_image {
+    opacity: 0; /* Initially hide the image */
+    animation: fadeIn 1.5s forwards; /* Apply the fadeIn animation */
+}
+  
+@keyframes fadeIn {
+    0% {
+      opacity: 0; /* Start with opacity 0 */
+    }
+    100% {
+      opacity: 1; /* End with opacity 1 */
+    }
+}

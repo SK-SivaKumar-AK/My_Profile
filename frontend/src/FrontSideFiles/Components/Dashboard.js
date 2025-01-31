@@ -27,7 +27,7 @@ const Dashboard = () => {
     <>
         {
           loading ? 
-            <div className="row vh-100 d-flex justify-content-center align-items-center">
+            <div className="row d-flex justify-content-center align-items-center">
                 <div className="col-4">
                     <h1 className="text-center">&nbsp;</h1>
                 </div>
@@ -37,12 +37,20 @@ const Dashboard = () => {
 
           <>
             <div className="col-lg-5 col-12 text-white d-flex flex-column justify-content-center align-items-lg-end align-items-center">
-                <p><span className="fs-2">I'M</span><span className={`ms-3 ${style.name}`}><b>{userData[0].userName}</b></span></p>
-                <p className="fs-2">{dashboardData[0].mainContent}</p>
-                <p className="fs-4">{dashboardData[0].subContent}</p>
+              <p><span className="fs-2">I'M</span>
+                <span className={`ms-3 ${style.name}`}>
+                  {userData[0].userName.split('').map((char, index) => (
+                    <span key={index} className={`${style.letter}`} style={{ animationDelay: `${index * 0.1}s` }} >
+                      <b>{char}</b>
+                    </span>
+                  ))}
+                </span>
+              </p>
+              <p className="fs-2">{dashboardData[0].mainContent}</p>
+              <p className="fs-4">{dashboardData[0].subContent}</p>
             </div>
             <div className="col-lg-6 col-12 mt-2">
-                <img src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${dashboardData[0].userImage}`} alt="userImage" width='100%' height='100%'/>
+                <img className={`${style.fade_image}`} src={`${process.env.REACT_APP_BASE_URL}assets/uploads/images/${dashboardData[0].userImage}`} alt="userImage" width='100%' height='100%'/>
             </div>
             <div className="col-lg-auto col-12 text-white d-flex flex-lg-column justify-content-lg-end justify-content-between mt-5">
                 <a href="void()" className='text-white'><i className="bi bi-instagram mt-2 fs-3"></i></a>

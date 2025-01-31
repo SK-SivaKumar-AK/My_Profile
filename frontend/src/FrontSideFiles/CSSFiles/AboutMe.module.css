@@ -5,3 +5,17 @@
     background-color: rgb(33, 32, 32);
     box-shadow: 0 0 10px 5px rgba(253, 253, 0, 0.981);
 }
+
+.fade_image {
+    opacity: 0; /* Initially hide the image */
+    animation: fadeIn 1.5s forwards; /* Apply the fadeIn animation */
+}
+  
+@keyframes fadeIn {
+    0% {
+      opacity: 0; /* Start with opacity 0 */
+    }
+    100% {
+      opacity: 1; /* End with opacity 1 */
+    }
+}

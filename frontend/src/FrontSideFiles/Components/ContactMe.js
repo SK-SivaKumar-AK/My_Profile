@@ -61,7 +61,7 @@ const ContactMe = () => {
     <>
       {
         loading ? 
-        <div className="row vh-100 d-flex justify-content-center align-items-center">
+        <div className="row d-flex justify-content-center align-items-center">
             <div className="col-4">
                 <h1 className="text-center">&nbsp;</h1>
             </div>
