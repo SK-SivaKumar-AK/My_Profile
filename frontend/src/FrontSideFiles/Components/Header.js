@@ -21,7 +21,9 @@ const Header = ({userData}) => {
                 </ul>
             </div>
             <div className="col-auto d-lg-flex d-none">
-                <button className={`py-2 px-3 rounded-5 ${style.button_color}`}>Resume</button>
+                <a href={`${process.env.REACT_APP_BASE_URL}assets/uploads/resumes/${userData[0].userResume}`} target='_blank'>
+                    <button className={`py-2 px-3 rounded-5 ${style.button_color}`}>Resume</button>
+                </a>
             </div>
             <div className="col-auto mt-2 d-lg-none d-flex ms-auto dropdown">
                 <button className={`py-2 px-3 rounded-2 dropdown-toggle ${style.button_color}`} data-bs-toggle="dropdown" ><i className="bi bi-list"></i></button>
