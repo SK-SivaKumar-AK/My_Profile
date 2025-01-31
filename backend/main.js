@@ -19,11 +19,18 @@ dotEnv.config({
 app.use(express.json());
 app.use(express.urlencoded( { extended:true } ));
 app.use(cookieParser());
-app.use(cors({
-    origin: process.env.FRONTEND_URL,  // Your frontend URL
-    credentials: true,                // Allow cookies to be sent
-  }));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
+const allowedOrigins = process.env.FRONTEND_URL.split(',');
+app.use(cors({
+    origin: function (origin, callback) {
+      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,  // Allow credentials
+}));
 
 
 

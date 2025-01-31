@@ -84,8 +84,7 @@ const userLogin = async (req , res) => {
         res.cookie('accessToken' , accessToken , {
             secure : true,
             maxAge : 60 * 60 * 1000,
-            httpOnly: true,
-            sameSite: 'None'
+            httpOnly: true
         });
 
         const refreshToken = await jwt.sign(
@@ -100,8 +99,7 @@ const userLogin = async (req , res) => {
         res.cookie('refreshToken' , refreshToken , {
             secure : true,
             maxAge : 120 * 60 * 1000,
-            httpOnly: true,
-            sameSite: 'None'
+            httpOnly: true
         });
         
 
@@ -187,12 +185,10 @@ const userLogout = (req , res) => {
         res.clearCookie('accessToken', { 
             secure: true, 
             httpOnly: true, 
-            sameSite: 'None' 
         });
         res.clearCookie('refreshToken', { 
             secure: true, 
-            httpOnly: true, 
-            sameSite: 'None' 
+            httpOnly: true,
         });
         return res.status(200).json({
             Result : true,
