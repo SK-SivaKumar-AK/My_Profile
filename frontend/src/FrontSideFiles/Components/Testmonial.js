@@ -37,7 +37,7 @@ const Testmonial = () => {
           <div className="col-12 text-white">
             <div className="row text-center">
               <div className="col">
-                <h3 className='mt-5 fs-1'><b>Testmonials</b></h3>
+                <h3 className='mt-5 fs-1'><b>Testimonials</b></h3>
               </div>
             </div>
           </div>

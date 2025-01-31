@@ -24,7 +24,7 @@ const AdminMainPage = () => {
                 setUserData(responded.data);
                 setLoading(false);
             }else{
-                navigate('/admin/login');
+                navigate('/admin/entry/login');
             }
         }
         getUser();
@@ -60,7 +60,7 @@ const AdminMainPage = () => {
                             <Link to={'/admin/entered/aboutme'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-file-person"></i><span className="ms-3">About Me</span></li></Link>
                             <Link to={'/admin/entered/projects'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-pc-display"></i><span className="ms-3">Projects</span></li></Link>
                             <Link to={'/admin/entered/experience'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-building-check"></i><span className="ms-3">Experience</span></li></Link>
-                            <Link to={'/admin/entered/testmonial'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-award"></i><span className="ms-3">Testmonial</span></li></Link>
+                            <Link to={'/admin/entered/testmonial'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-award"></i><span className="ms-3">Testimonial</span></li></Link>
                             <Link to={'/admin/entered/contactme'} className="text-black text-decoration-none"><li className="fs-4 mt-4"><i className="bi bi-person-lines-fill"></i><span className="ms-3">Contact Me</span></li></Link>
                         </ul>
                     </div>

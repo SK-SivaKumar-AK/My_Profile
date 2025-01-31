@@ -22,7 +22,7 @@ const HeaderModal = ({userData , inputUpdateData , handleReset , handleUpdateCha
                         </div>
                         <div className="mb-3">
                             <label htmlFor="updateUserPassword" className="form-label text-dark">UserPassword</label>
-                            <input type="password" className="form-control" id="updateUserPassword" name="userPassword" placeholder="Please Enter User Password" value={inputUpdateData.userPassword} onChange={ (e) => handleUpdateChange(e)}/>
+                            <input type="password" className="form-control" id="updateUserPassword" name="userPassword" placeholder="*****" value={inputUpdateData.userPassword} onChange={ (e) => handleUpdateChange(e)}/>
                         </div>
                         <div className="mb-3">
                             <label className="form-label text-dark" htmlFor="updateImage">User Profile Picture</label>

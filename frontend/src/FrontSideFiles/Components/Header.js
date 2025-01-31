@@ -16,7 +16,7 @@ const Header = ({userData}) => {
                     <Link to={'/aboutme'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>AboutMe</li></Link>
                     <Link to={'/projects'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>Projects</li></Link>
                     <Link to={'/experience'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>Experience</li></Link>
-                    <Link to={'/testmonial'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>Testmonial</li></Link>
+                    <Link to={'/testmonial'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>Testimonial</li></Link>
                     <Link to={'/contactme'} className='text-decoration-none text-white'><li className={`mt-3 py-2 px-3 rounded ${style.nav_links}`}>ContactMe</li></Link>
                 </ul>
             </div>
@@ -30,7 +30,7 @@ const Header = ({userData}) => {
                     <Link to={'/aboutme'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>AboutMe</li></Link>
                     <Link to={'/projects'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>Projects</li></Link>
                     <Link to={'/experience'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>Experience</li></Link>
-                    <Link to={'/testmonial'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>Testmonial</li></Link>
+                    <Link to={'/testmonial'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>Testimonial</li></Link>
                     <Link to={'/contactme'} className='text-decoration-none text-white'><li className={`py-1 px-3 rounded ${style.dropdown_item_color}`}>ContactMe</li></Link>
                 </ul>
             </div>
