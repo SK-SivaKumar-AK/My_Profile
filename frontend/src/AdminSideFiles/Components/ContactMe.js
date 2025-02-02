@@ -171,7 +171,7 @@ const ContactMe = () => {
             <input type="text" className="form-control" id="pincode" name="pincode" placeholder="Please Enter Pincode" value={inputAddData.pincode} onChange={ (e) => handleAddChange(e)}/>
           </div>
           <div className="mt-3">
-            <label htmlFor="phoneNumber" className="form-label">Pincode</label>
+            <label htmlFor="phoneNumber" className="form-label">Phone</label>
             <input type="text" className="form-control" id="phoneNumber" name="phoneNumber" placeholder="Please Enter Phone" value={inputAddData.phoneNumber} onChange={ (e) => handleAddChange(e)}/>
           </div>
           <div className="form-check form-switch mt-3">
