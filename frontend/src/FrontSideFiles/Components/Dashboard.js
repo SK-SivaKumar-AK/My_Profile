@@ -53,10 +53,10 @@ const Dashboard = () => {
                 <img className={`${style.fade_image}`} src={`${process.env.REACT_APP_BASE_URL}/assets/uploads/images/${dashboardData[0].userImage}`} alt="userImage" width='100%' height='100%'/>
             </div>
             <div className="col-lg-auto col-12 text-white d-flex flex-lg-column justify-content-lg-end justify-content-between mt-5">
-                <a href="https://www.instagram.com/_siva.sk_?igsh=MTE5NHNrMzRmNnV1bg==" className='text-white'><i className="bi bi-instagram mt-2 fs-3"></i></a>
-                <a href="https://wa.me/12345678900" className='text-white'><i className="bi bi-whatsapp mt-2 fs-3"></i></a>
-                <a href="https://www.linkedin.com/in/siva-kumar-862a6134a/" className='text-white'><i className="bi bi-linkedin mt-2 fs-3"></i></a>
-                <a href="https://www.facebook.com/share/193KLBssvj/" className='text-white'><i className="bi bi-facebook mt-2 fs-3"></i></a>
+                <a href="https://www.instagram.com/_siva.sk_?igsh=MTE5NHNrMzRmNnV1bg==" target='_blank' className='text-white'><i className="bi bi-instagram mt-2 fs-3"></i></a>
+                <a href="https://wa.me/12345678900" target='_blank' className='text-white'><i className="bi bi-whatsapp mt-2 fs-3"></i></a>
+                <a href="https://www.linkedin.com/in/siva-kumar-862a6134a/" target='_blank' className='text-white'><i className="bi bi-linkedin mt-2 fs-3"></i></a>
+                <a href="https://www.facebook.com/share/193KLBssvj/" target='_blank' className='text-white'><i className="bi bi-facebook mt-2 fs-3"></i></a>
             </div>
           </>
         }
